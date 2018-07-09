@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import './index.css';
 import './semantic/dist/semantic.min.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 ReactDOM.render(
   <BrowserRouter>
-  <div>
+    <div>
 
     </div>
   </BrowserRouter>
