@@ -1,15 +1,17 @@
 class FormsController < ApplicationController
   def index
-
-    # key = params[:key]
-    #
-    # if key.blank?
-    #   render status: 400, json: { error: 'Expected parameter `key` '}
-    # else
       render(
         status: 200,
-        json: Form.first.questions
+        json: Form.all
       )
-    # end
   end
+
+  def show
+      form = Form.find(params[:id])
+      render(
+        status: 200,
+        json: { name: form.name, questions: form.questions }
+        )
+  end
+
 end
