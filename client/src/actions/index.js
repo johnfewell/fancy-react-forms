@@ -1,17 +1,27 @@
 export const FETCH_FORMS = 'fetch_forms';
 
-const ROOT_URL = 'http://localhost:3001/api'
+const ROOT_URL = '/api'
 
 export function fetchForms() {
 
-  const request = fetch(`${ROOT_URL}/forms`)
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(responseJSON) {
-    return responseJSON
-  });
+  function checkStatus(response) {
+    if (response.status >= 200 && response.status < 300) {
+      return response;
+    }
+    const error = new Error(`HTTP Error ${response.statusText}`);
+    error.status = response.statusText;
+    error.response = response;
+    throw error;
+  }
 
+  function parseJSON(response) {
+    return response.json();
+  }
+
+  const request = fetch(`${ROOT_URL}/forms`, {
+    accept: 'application/json',
+  }).then(checkStatus)
+    .then(parseJSON)
 
   return {
     type: FETCH_FORMS,

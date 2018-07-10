@@ -11,8 +11,6 @@ import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
-
-
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
@@ -21,5 +19,5 @@ ReactDOM.render(
       </div>
     </BrowserRouter>
   </Provider>
-, document.getElementById('root'), // eslint-disable-line no-undef
+, document.getElementById('root'),
 );

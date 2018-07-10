@@ -8,6 +8,7 @@ class FormsIndex extends Component {
   }
 
   render () {
+    console.log(this.props.forms)
     return (
       <div>
         Forms Index
@@ -16,5 +17,8 @@ class FormsIndex extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return { forms: state.forms };
+}
 
-export default connect(null, { fetchForms })(FormsIndex);
+export default connect(mapStateToProps, { fetchForms })(FormsIndex);
