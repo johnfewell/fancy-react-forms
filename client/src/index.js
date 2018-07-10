@@ -6,19 +6,20 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import promise from 'redux-promise';
-
+import FormsIndex from './components/forms_index'
 import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
-import FormsIndex from './components/forms_index'
 
 
 ReactDOM.render(
-  <BrowserRouter>
-    <div>
-      <Route path="/" component={FormsIndex} />
-    </div>
-  </BrowserRouter>
-,  document.getElementById('root'), // eslint-disable-line no-undef
+  <Provider store={createStoreWithMiddleware(reducers)}>
+    <BrowserRouter>
+      <div>
+        <Route path="/" component={FormsIndex} />
+      </div>
+    </BrowserRouter>
+  </Provider>
+, document.getElementById('root'), // eslint-disable-line no-undef
 );

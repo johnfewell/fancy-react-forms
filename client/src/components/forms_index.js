@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchForms } from '../actions';
 
 class FormsIndex extends Component {
+  componentDidMount() {
+    this.props.fetchForms();
+  }
+
   render () {
     return (
       <div>
@@ -11,4 +17,4 @@ class FormsIndex extends Component {
 }
 
 
-export default FormsIndex
+export default connect(null, { fetchForms })(FormsIndex);
