@@ -8,6 +8,7 @@ export function fetchForms() {
   const request = axios.get(`${ROOT_URL}/forms`);
 
   return {
-    type: FETCH_FORMS
+    type: FETCH_FORMS,
+    payload: request
   };
 }
