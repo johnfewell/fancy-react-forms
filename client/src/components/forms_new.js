@@ -8,7 +8,10 @@ import { Button,
   Segment,
   Menu,
   Icon,
-  Sidebar
+  Sidebar,
+  Grid,
+  Image,
+  Form
 } from 'semantic-ui-react';
 
 
@@ -34,10 +37,45 @@ class FormsNew extends Component {
        <Sidebar.Pusher>
             <Segment basic>
               <Header as="h3">Application Content</Header>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
+              <Grid>
+                <Grid.Row>
+                  <Grid.Column width={8}>
+                  <Form>
+                    <Form.Field>
+                      <label>User Input</label>
+                      <input />
+                    </Form.Field>
+                  </Form>
+                  </Grid.Column>
+                  <Grid.Column width={8}>
+                  <Form>
+                    <Form.Field>
+                      <label>User Input</label>
+                      <input />
+                    </Form.Field>
+                  </Form>
+                  </Grid.Column>
+                </Grid.Row>
+
+                <Grid.Row>
+                  <Grid.Column width={8}>
+                  <Form>
+                    <Form.Field>
+                      <label>User Input</label>
+                      <input />
+                    </Form.Field>
+                  </Form>
+                  </Grid.Column>
+                  <Grid.Column width={8}>
+                  <Form>
+                    <Form.Field>
+                      <label>User Input</label>
+                      <input />
+                    </Form.Field>
+                  </Form>
+                  </Grid.Column>
+                </Grid.Row>
+                </Grid>
             </Segment>
        </Sidebar.Pusher>
     </Sidebar.Pushable>
