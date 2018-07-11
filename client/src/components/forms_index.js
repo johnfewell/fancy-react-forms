@@ -26,9 +26,11 @@ class FormsIndex extends Component {
   }
 
   render () {
+    const newFormUrl = 'forms/new'
+    const newFormString = 'New Form'
     return (
       <Container>
-        <HeaderMenu />
+        <HeaderMenu firstUrl={newFormUrl} firstString={newFormString}/>
         <Header as='h1'>Forms</Header>
         <Card.Group itemsPerRow={4}>
           {this.renderForms()}

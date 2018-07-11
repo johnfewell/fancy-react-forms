@@ -21,23 +21,23 @@ class FormsNew extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      animation: 'overlay',
+      animation: 'slide along',
       direction: 'left',
       dimmed: false,
       visible: false,
     };
   }
 
-  handleAnimationChange = animation => () =>
-    this.setState({ animation, visible: !this.state.visible })
+  handleAnimationChange = () => (
+    this.setState({ visible: !this.state.visible }))
 
   render() {
     const { animation, dimmed, direction, visible } = this.state
     const vertical = direction === 'bottom' || direction === 'top'
     return (
       <div>
-        <Button disabled={vertical} onClick={this.handleAnimationChange('slide along')}>
-          Slide Along
+        <Button disabled={vertical} onClick={this.handleAnimationChange}>
+          Menu
         </Button>
         <Sidebar.Pushable as={Segment}>
             <VerticalSidebar animation={animation} direction={direction} visible={visible} />

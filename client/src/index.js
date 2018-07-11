@@ -6,8 +6,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import thunk from 'redux-thunk'
 
 import rootReducer from './reducers';
-import FormsIndex from './components/forms_index'
-import FormsNew from './components/forms_new'
+import FormsIndex from './components/forms_index';
+import FormsNew from './components/forms_new';
+import FormsShow from './components/forms_show';
 import './index.css';
 import './semantic/dist/semantic.min.css';
 
@@ -23,8 +24,9 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Switch>
-          <Route path="/forms/new" component={ FormsNew } />
-          <Route path="/" component={ FormsIndex } />
+          <Route path="/forms/new" component={FormsNew} />
+          <Route path="/forms/" component={FormsShow} />
+          <Route path="/" component={FormsIndex} />
         </Switch>
       </div>
     </BrowserRouter>
