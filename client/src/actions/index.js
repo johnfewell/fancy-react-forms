@@ -5,7 +5,7 @@ function fetchForms () {
       .then(response => {
         response.json()
         .then(json => {
-          
+
           dispatch({type: 'RECEIVED_FORMS', payload: json})
         })
       })
