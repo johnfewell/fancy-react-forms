@@ -19,13 +19,14 @@ const store = createStore(
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 )
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <div>
         <Switch>
           <Route path="/forms/new" component={FormsNew} />
-          <Route path="/forms/" component={FormsShow} />
+          <Route path="/forms/:id" component={FormsShow} />
           <Route path="/" component={FormsIndex} />
         </Switch>
       </div>
