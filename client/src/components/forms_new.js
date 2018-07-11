@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, { Component } from 'react';
 import { Button,
   Container,
@@ -13,73 +14,56 @@ import { Button,
   Image,
   Form
 } from 'semantic-ui-react';
-
+import QuestionText from './question_text'
+import VerticalSidebar from './vertical_sidebar'
 
 class FormsNew extends Component {
   constructor(props) {
     super(props);
-    this.state = {menuVisible: false};
+    this.state = {
+      animation: 'overlay',
+      direction: 'left',
+      dimmed: false,
+      visible: false,
+    };
   }
+
+  handleAnimationChange = animation => () =>
+    this.setState({ animation, visible: !this.state.visible })
+
   render() {
-    return <div>
-      <Menu secondary attached="top">
-        <Menu.Item onClick={() => this.setState({ menuVisible: !this.state.menuVisible })} >
-          <Icon name="sidebar" />Menu
-        </Menu.Item>
-      </Menu>
-    <Sidebar.Pushable as={Segment} attached="bottom" >
-      <Sidebar as={Menu} animation="uncover" visible={this.state.menuVisible} icon="labeled" vertical inline inverted>
-        <Menu.Item><Icon name="home" />Home</Menu.Item>
-        <Menu.Item><Icon name="block layout" />Topics</Menu.Item>
-        <Menu.Item><Icon name="smile" />Friends</Menu.Item>
-        <Menu.Item><Icon name="calendar" />History</Menu.Item>
-      </Sidebar>
-       <Sidebar.Pusher>
+    const { animation, dimmed, direction, visible } = this.state
+    const vertical = direction === 'bottom' || direction === 'top'
+    return (
+      <div>
+        <Button disabled={vertical} onClick={this.handleAnimationChange('slide along')}>
+          Slide Along
+        </Button>
+        <Sidebar.Pushable as={Segment}>
+            <VerticalSidebar animation={animation} direction={direction} visible={visible} />
+          <Sidebar.Pusher dimmed={dimmed && visible}>
             <Segment basic>
-              <Header as="h3">Application Content</Header>
               <Grid>
                 <Grid.Row>
                   <Grid.Column width={8}>
-                  <Form>
-                    <Form.Field>
-                      <label>User Input</label>
-                      <input />
-                    </Form.Field>
-                  </Form>
+                    <Header as='h3'>Application Content</Header>
+                    <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+                        <QuestionText />
                   </Grid.Column>
-                  <Grid.Column width={8}>
-                  <Form>
-                    <Form.Field>
-                      <label>User Input</label>
-                      <input />
-                    </Form.Field>
-                  </Form>
-                  </Grid.Column>
-                </Grid.Row>
 
-                <Grid.Row>
                   <Grid.Column width={8}>
-                  <Form>
-                    <Form.Field>
-                      <label>User Input</label>
-                      <input />
-                    </Form.Field>
-                  </Form>
-                  </Grid.Column>
-                  <Grid.Column width={8}>
-                  <Form>
-                    <Form.Field>
-                      <label>User Input</label>
-                      <input />
-                    </Form.Field>
-                  </Form>
+                    <Header as='h3'>Application Content</Header>
+                    <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+                        <QuestionText />
                   </Grid.Column>
                 </Grid.Row>
-                </Grid>
+              </Grid>
+
             </Segment>
-       </Sidebar.Pusher>
-    </Sidebar.Pushable>
-    </div>
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>
+      </div>
+    )
   }
 }
 

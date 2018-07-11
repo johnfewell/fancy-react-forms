@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchForms } from '../actions';
 import { Card, Header, Container, Grid } from 'semantic-ui-react';
+import HeaderMenu from './header_menu';
 
 class FormsIndex extends Component {
   componentDidMount() {
@@ -10,7 +11,7 @@ class FormsIndex extends Component {
   }
 
   renderForms(){
-    return _.map(this.props.forms.forms, form => {
+    return _.map(this.props.forms, form => {
       const formUrl = `forms/${form.id}`
       return (
           <Card
@@ -27,6 +28,7 @@ class FormsIndex extends Component {
   render () {
     return (
       <Container>
+        <HeaderMenu />
         <Header as='h1'>Forms</Header>
         <Card.Group itemsPerRow={4}>
           {this.renderForms()}
@@ -37,7 +39,7 @@ class FormsIndex extends Component {
 }
 
 function mapStateToProps(state) {
-  return { forms: state.forms };
+  return { forms: state.forms.forms_state};
 }
 
 export default connect(mapStateToProps, { fetchForms })(FormsIndex);

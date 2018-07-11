@@ -8,7 +8,7 @@ export default function(state = {}, action) {
       return { ...state, error: action.payload }
     case 'RECEIVED_FORMS':
       return {
-        forms: action.payload
+        forms_state: action.payload
       }
     default:
       return state;
