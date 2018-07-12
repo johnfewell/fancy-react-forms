@@ -10,7 +10,7 @@ class FormsController < ApplicationController
       form = Form.find(params[:id])
       render(
         status: 200,
-        json: { name: form.name, questions: form.questions }
+        json: { id: form.id, name: form.name, questions: form.questions }
         )
   end
 

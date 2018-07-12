@@ -1,3 +1,7 @@
+const FETCH_FORMS = 'FETCH_FORMS';
+const FETCH_FORM = 'FETCH_FORM';
+
+
 function fetchForms () {
   return (dispatch) => {
     dispatch({type: 'FETCH_FORMS'})
@@ -33,6 +37,6 @@ function fetchForm(id) {
 }
 
 export {
-  fetchForms,
-  fetchForm
+  fetchForm,
+  fetchForms
 }
