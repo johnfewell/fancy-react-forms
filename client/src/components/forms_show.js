@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
+import { matchPath } from 'react-router'
 import { connect } from 'react-redux';
 import { fetchForm } from '../actions';
 import { bindActionCreators } from 'redux';
 
 class FormsShow extends Component {
+
   componentDidMount() {
-    const { id } = this.props.match.params.id;
+    const match = matchPath(this.props.history.location.pathname, {
+              path: '/forms/:id',
+              exact: true,
+              strict: false
+            })
+
+    const id = match.params.id;
     this.props.fetchForm(id);
   }
+
+
+
 
   render(){
 

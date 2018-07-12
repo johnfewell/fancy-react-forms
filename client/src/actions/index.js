@@ -22,7 +22,7 @@ function fetchForms () {
 function fetchForm(id) {
   return (dispatch) => {
     dispatch({type: 'FETCH_FORM'})
-    return fetch(`api/forms/${id}`)
+    return fetch(`/api/forms/${id}`)
       .then(response => {
         response.json()
         .then(json => {
