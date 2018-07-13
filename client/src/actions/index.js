@@ -1,7 +1,6 @@
 const FETCH_FORMS = 'FETCH_FORMS';
 const FETCH_FORM = 'FETCH_FORM';
 
-
 function fetchForms () {
   return (dispatch) => {
     dispatch({type: 'FETCH_FORMS'})
@@ -9,7 +8,6 @@ function fetchForms () {
       .then(response => {
         response.json()
         .then(json => {
-
           dispatch({type: 'RECEIVED_FORMS', payload: json})
         })
       })
@@ -26,7 +24,6 @@ function fetchForm(id) {
       .then(response => {
         response.json()
         .then(json => {
-
           dispatch({type: 'RECEIVED_FORM', payload: json})
         })
       })

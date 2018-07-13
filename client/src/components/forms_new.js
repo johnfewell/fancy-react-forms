@@ -48,17 +48,15 @@ class FormsNew extends Component {
                   <Grid.Column width={8}>
                     <Header as='h3'>Application Content</Header>
                     <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
-                        <QuestionText />
+                    <QuestionText />
                   </Grid.Column>
-
                   <Grid.Column width={8}>
                     <Header as='h3'>Application Content</Header>
                     <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
-                        <QuestionText />
+                    <QuestionText />
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
-
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>

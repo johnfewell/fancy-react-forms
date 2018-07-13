@@ -14,13 +14,13 @@ class FormsIndex extends Component {
     return _.map(this.props.forms, form => {
       const formUrl = `forms/${form.id}`
       return (
-          <Card
-            href={formUrl}
-            key={form.id}
-            header={form.name}
-            meta='0 Responses'
-            description='Duis convallis varius tellus id gravida. Vestibulum pulvinar lacus hendrerit neque ullamcorper sagittis. Nullam quis lectus et ligula ullamcorper iaculis sit amet et purus. Morbi consectetur dui sit amet massa sollicitudin, et consectetur est malesuada. Pellentesque ac malesuada mauris.'
-          />
+        <Card
+          href={formUrl}
+          key={form.id}
+          header={form.name}
+          meta='0 Responses'
+          description='Duis convallis varius tellus id gravida. Vestibulum pulvinar lacus hendrerit neque ullamcorper sagittis. Nullam quis lectus et ligula ullamcorper iaculis sit amet et purus. Morbi consectetur dui sit amet massa sollicitudin, et consectetur est malesuada. Pellentesque ac malesuada mauris.'
+        />
       )
     });
   }

@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { matchPath } from 'react-router'
 import { connect } from 'react-redux';
@@ -8,23 +9,26 @@ class FormsShow extends Component {
 
   componentDidMount() {
     const match = matchPath(this.props.history.location.pathname, {
-              path: '/forms/:id',
-              exact: true,
-              strict: false
-            })
+      path: '/forms/:id',
+      exact: true,
+      strict: false
+    })
 
     const id = match.params.id;
     this.props.fetchForm(id);
   }
-
-
-
+  // renderQuestions(){
+  //   return _.map(this.props.form.questions, question => {
+  //     return (
+  //       <p>{question.content}</p>
+  //     )}
+  // }
 
   render(){
 
     return (
       <div>
-        Forms show
+        questions:
       </div>
     )
   }
