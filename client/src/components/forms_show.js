@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { matchPath } from 'react-router'
 import { connect } from 'react-redux';
 import { fetchForm } from '../actions';
-import { Header, Container, Form} from 'semantic-ui-react';
+import { Header, Container, Form, Loader} from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import FormGroupShow from './form_group_show';
 
@@ -22,7 +22,7 @@ class FormsShow extends Component {
 
   renderQuestions(){
     if (this.props.form == null) {
-      return <p>loading...</p>
+      return <Loader active inline='centered' />
     } else {
       return this.props.form.questions.map((question,i) => <FormGroupShow question={question} />)
      }
@@ -31,7 +31,7 @@ class FormsShow extends Component {
 
   test(){
     if (this.props.form == null) {
-      return <p>loading...</p>
+      return ''
     } else {
       return this.props.form.name
     }
