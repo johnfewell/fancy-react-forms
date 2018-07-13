@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
-import { Button, Dimmer, Image, Segment, Form, Divider } from 'semantic-ui-react'
+import React, { Component, Fragment } from 'react'
+import { Button, Dimmer, Image, Segment, Form, Divider, Icon } from 'semantic-ui-react'
 import Observer from 'react-intersection-observer'
 import '../index.css';
+
 
 class FormGroupShow extends Component {
   state = {}
@@ -14,6 +15,9 @@ class FormGroupShow extends Component {
  }
   render(){
     const { active } = this.state
+    const arrowIcon = <Fragment><i aria-hidden="true" class="arrow right small icon"></i></Fragment>
+    const questionLabel = `${this.props.index} ${arrowIcon} ${this.props.question.content}`
+
     return (
       <div>
       <Observer onChange={(inView) => {this.handleChange(inView)}} threshold='.9999' >
@@ -21,7 +25,7 @@ class FormGroupShow extends Component {
           <Dimmer active={active} inverted onClickOutside={this.handleHide} />
             <Form size='huge'>
                 <Form.Group widths='equal' >
-                  <Form.Field label={this.props.question.content} control='input' className='borderless' placeholder='Type it in yo' />
+                  <Form.Field label={`${this.props.index +1} -> ${this.props.question.content}`} control='input' placeholder='Type your answer here...' />
                 </Form.Group>
                 <Divider hidden />
               </Form>
