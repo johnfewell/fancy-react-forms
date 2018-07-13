@@ -4,7 +4,7 @@ const FETCH_FORM = 'FETCH_FORM';
 function fetchForms () {
   return (dispatch) => {
     dispatch({type: 'FETCH_FORMS'})
-    return fetch('api/forms')
+    return fetch('/api/forms')
       .then(response => {
         response.json()
         .then(json => {

@@ -6,6 +6,9 @@ class FormsController < ApplicationController
       )
   end
 
+
+  #Another way:
+  # render json: @post, include: ['author', 'comments', 'comments.user']
   def show
       form = Form.find(params[:id])
       render(
