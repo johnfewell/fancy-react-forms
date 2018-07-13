@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Dimmer, Image, Segment } from 'semantic-ui-react'
+import Observer from 'react-intersection-observer'
 
 export default class DimmerExampleBlurringInverted extends Component {
   state = {}
@@ -12,6 +13,7 @@ export default class DimmerExampleBlurringInverted extends Component {
 
     return (
       <div>
+      <Observer onChange={inView => this.handleShow }>
         <Dimmer.Dimmable as={Segment} blurring dimmed={active}>
           <Dimmer active={active} inverted onClickOutside={this.handleHide} />
 
@@ -27,6 +29,7 @@ export default class DimmerExampleBlurringInverted extends Component {
           <Button icon='plus' onClick={this.handleShow} />
           <Button icon='minus' onClick={this.handleHide} />
         </Button.Group>
+        </Observer>
       </div>
     )
   }
