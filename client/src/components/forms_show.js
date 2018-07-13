@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { matchPath } from 'react-router'
 import { connect } from 'react-redux';
 import { fetchForm } from '../actions';
-import { Header, Container} from 'semantic-ui-react';
+import { Header, Container, Form} from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import FormGroupShow from './form_group_show';
 
@@ -41,8 +41,9 @@ class FormsShow extends Component {
     return (
        <Container text>
         <Header as='h1'>Name: {this.test()}</Header>
-
-        {this.renderQuestions()}
+        <Form size='huge'>
+          {this.renderQuestions()}
+        </Form>
       </Container>
     )
   }
