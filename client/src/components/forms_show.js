@@ -13,22 +13,33 @@ class FormsShow extends Component {
       exact: true,
       strict: false
     })
-
+    console.log(this.props)
     const id = match.params.id;
     this.props.fetchForm(id);
   }
-  // renderQuestions(){
-  //   return _.map(this.props.form.questions, question => {
-  //     return (
-  //       <p>{question.content}</p>
-  //     )}
-  // }
+
+  renderQuestions(){
+    if (this.props.form == null) {
+      return <p>loading...</p>
+    } else {
+      return this.props.form.questions.map((question,i) => <li key={i}>{question.content}</li>)
+     }
+  }
+
+  test(){
+    if (this.props.form == null) {
+      return <p>loading...</p>
+    } else {
+      return this.props.form.name
+    }
+  }
 
   render(){
-
     return (
       <div>
-        questions:
+        <h1>Name: {this.test()}</h1>
+
+        Questions: {this.renderQuestions()}
       </div>
     )
   }
