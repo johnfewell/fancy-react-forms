@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 import { matchPath } from 'react-router'
 import { connect } from 'react-redux';
 import { fetchForm } from '../actions';
+import { Header, Container} from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
+import FormGroupShow from './form_group_show';
 
 class FormsShow extends Component {
 
@@ -22,9 +24,10 @@ class FormsShow extends Component {
     if (this.props.form == null) {
       return <p>loading...</p>
     } else {
-      return this.props.form.questions.map((question,i) => <li key={i}>{question.content}</li>)
+      return this.props.form.questions.map((question,i) => <FormGroupShow question={question} />)
      }
   }
+
 
   test(){
     if (this.props.form == null) {
@@ -36,11 +39,11 @@ class FormsShow extends Component {
 
   render(){
     return (
-      <div>
-        <h1>Name: {this.test()}</h1>
+       <Container text>
+        <Header as='h1'>Name: {this.test()}</Header>
 
-        Questions: {this.renderQuestions()}
-      </div>
+        {this.renderQuestions()}
+      </Container>
     )
   }
 }
