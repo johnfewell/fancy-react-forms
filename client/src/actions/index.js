@@ -1,5 +1,5 @@
-const FETCH_FORMS = 'FETCH_FORMS';
-const FETCH_FORM = 'FETCH_FORM';
+// const FETCH_FORMS = 'FETCH_FORMS';
+// const FETCH_FORM = 'FETCH_FORM';
 
 function fetchForms () {
   return (dispatch) => {
@@ -33,7 +33,21 @@ function fetchForm(id) {
   }
 }
 
+function handleShow() {
+  return (dispatch) => {
+    dispatch({type: 'HANDLE_SHOW'})
+  }
+}
+
+function handleHide() {
+  return (dispatch) => {
+    dispatch({type: 'HANDLE_HIDE'})
+  }
+}
+
 export {
   fetchForm,
-  fetchForms
+  fetchForms,
+  handleShow,
+  handleHide
 }

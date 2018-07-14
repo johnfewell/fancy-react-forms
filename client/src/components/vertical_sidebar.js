@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom';
 import React, { Component } from 'react'
 import {
   Header,
@@ -19,10 +20,12 @@ const VerticalSidebar = ({ animation, direction, visible }) => (
     visible={visible}
     width='thin'
   >
-    <Menu.Item as='a'>
-      <Icon name='home' />
-      Home
-    </Menu.Item>
+    <Link to="/">
+      <Menu.Item as='a'>
+        <Icon name='home' />
+        Home
+      </Menu.Item>
+    </Link>
     <Menu.Item as='a'>
       <Icon name='orange tasks icon' />
       Long Text
