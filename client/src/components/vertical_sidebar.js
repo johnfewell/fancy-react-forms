@@ -9,7 +9,7 @@ import {
   Sidebar,
 } from 'semantic-ui-react'
 
-const VerticalSidebar = ({ animation, direction, visible }) => (
+const VerticalSidebar = ({ animation, direction, visible, onDeleteClick }) => (
   <Sidebar
     as={Menu}
     animation={animation}
@@ -34,7 +34,7 @@ const VerticalSidebar = ({ animation, direction, visible }) => (
       <Icon name='camera' />
       Channels
     </Menu.Item>
-    <Menu.Item as='a' onClick={() => { if (window.confirm('Are you sure you wish to delete this form?')) this.props.onDeleteClick() } }>
+    <Menu.Item as='a' onClick={() => { if (window.confirm('Are you sure you wish to delete this form?')) onDeleteClick() } }>
       <Icon name='trash alternate' />
       Delete
     </Menu.Item>

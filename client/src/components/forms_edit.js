@@ -70,7 +70,7 @@ render() {
         Menu
       </Button>
       <Sidebar.Pushable as={Segment}>
-          <VerticalSidebar delanimation={animation} direction={direction} visible={visible} />
+          <VerticalSidebar delanimation={animation} direction={direction} visible={visible} onDeleteClick={this.onDeleteClick} />
         <Sidebar.Pusher dimmed={dimmed && visible}>
           <Segment basic>
             <Grid>
