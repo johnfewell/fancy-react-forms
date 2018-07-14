@@ -8,7 +8,6 @@ import { bindActionCreators } from 'redux';
 import FormGroupShow from './form_group_show';
 import '../index.css';
 
-
 class FormsShow extends Component {
 
   componentDidMount() {
@@ -17,7 +16,6 @@ class FormsShow extends Component {
       exact: true,
       strict: false
     })
-    console.log(this.props)
     const id = match.params.id;
     this.props.fetchForm(id);
   }

@@ -26,6 +26,7 @@ ReactDOM.render(
       <div>
         <Switch>
           <Route path="/forms/new" component={FormsNew} />
+          <Route path="/forms/:id/edit" component={FormsEdit} />
           <Route path="/forms/:id" component={FormsShow} />
           <Route path="/" component={FormsIndex} />
         </Switch>

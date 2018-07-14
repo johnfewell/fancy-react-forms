@@ -17,7 +17,7 @@ import { Button,
 import QuestionText from './question_text'
 import VerticalSidebar from './vertical_sidebar'
 
-class FormsNew extends Component {
+class FormsEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -65,4 +65,4 @@ class FormsNew extends Component {
   }
 }
 
-export default FormsNew
+export default FormsEdit
