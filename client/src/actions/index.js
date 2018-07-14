@@ -45,9 +45,19 @@ function handleHide() {
   }
 }
 
+function deleteForm(id, callback) {
+  return (dispatch) => { fetch(`/api/forms/${id}`, {
+     method: 'DELETE',
+  }).then(response => {
+    dispatch({type: 'DELETE_FORM', payload: id})
+  }).then(() => callback());
+  }
+}
+
 export {
   fetchForm,
   fetchForms,
   handleShow,
-  handleHide
+  handleHide,
+  deleteForm
 }

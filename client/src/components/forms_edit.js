@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { matchPath } from 'react-router'
 import { connect } from 'react-redux';
-import { fetchForm } from '../actions';
+import { fetchForm, deleteForm } from '../actions';
 import { Header,
           Container,
           Form,
@@ -31,6 +31,13 @@ class FormsShow extends Component {
       dimmed: false,
       visible: false,
     };
+  }
+
+  onDeleteClick(){
+    const { id } = this.props.match.params;
+    this.props.deleteForm(id, () => {
+      this.props.history.push('/');
+    });
   }
 
   handleAnimationChange = () => (
@@ -63,7 +70,7 @@ render() {
         Menu
       </Button>
       <Sidebar.Pushable as={Segment}>
-          <VerticalSidebar animation={animation} direction={direction} visible={visible} />
+          <VerticalSidebar delanimation={animation} direction={direction} visible={visible} />
         <Sidebar.Pusher dimmed={dimmed && visible}>
           <Segment basic>
             <Grid>
@@ -93,7 +100,8 @@ render() {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    fetchForm: fetchForm
+    fetchForm: fetchForm,
+    deleteForm: deleteForm
   }, dispatch);
 };
 

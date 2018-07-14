@@ -34,6 +34,10 @@ const VerticalSidebar = ({ animation, direction, visible }) => (
       <Icon name='camera' />
       Channels
     </Menu.Item>
+    <Menu.Item as='a' onClick={() => { if (window.confirm('Are you sure you wish to delete this form?')) this.props.onDeleteClick() } }>
+      <Icon name='trash alternate' />
+      Delete
+    </Menu.Item>
   </Sidebar>
 )
 
