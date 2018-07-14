@@ -6,6 +6,8 @@ import { fetchForm } from '../actions';
 import { Header, Container, Form, Loader} from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import FormGroupShow from './form_group_show';
+import '../index.css';
+
 
 class FormsShow extends Component {
 
@@ -28,19 +30,10 @@ class FormsShow extends Component {
      }
   }
 
-
-  test(){
-    if (this.props.form == null) {
-      return ''
-    } else {
-      return this.props.form.name
-    }
-  }
-
   render(){
     return (
        <Container text>
-        <Header as='h1'>Name: {this.test()}</Header>
+        <div className='form-spacer'></div>
         <Form size='huge'>
           {this.renderQuestions()}
         </Form>

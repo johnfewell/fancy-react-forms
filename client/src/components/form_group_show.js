@@ -16,7 +16,7 @@ class FormGroupShow extends Component {
   render(){
     const { active } = this.state
     const arrowIcon = <Fragment><i aria-hidden="true" class="arrow right small icon"></i></Fragment>
-    const questionLabel = `${this.props.index} ${arrowIcon} ${this.props.question.content}`
+    const questionLabel = `${this.props.index+1} -> ${this.props.question.content}`
 
     return (
       <div>
@@ -25,7 +25,7 @@ class FormGroupShow extends Component {
           <Dimmer active={active} inverted onClickOutside={this.handleHide} />
             <Form size='huge'>
                 <Form.Group widths='equal' >
-                  <Form.Field label={`${this.props.index +1} -> ${this.props.question.content}`} control='input' placeholder='Type your answer here...' />
+                  <Form.Field label={questionLabel} control='input' placeholder='Type your answer here...' />
                 </Form.Group>
                 <Divider hidden />
               </Form>

@@ -47,11 +47,6 @@ export default class DimmerExampleBlurringInverted extends Component {
             <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
           </p>
         </Dimmer.Dimmable>
-
-        <Button.Group>
-          <Button icon='plus' onClick={this.handleShow} />
-          <Button icon='minus' onClick={this.handleHide} />
-        </Button.Group>
         </Observer>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu lacus ex. Mauris augue mi, commodo sit amet urna sit amet, tristique congue felis. Mauris semper, leo at ornare auctor, risus risus varius nulla, ac interdum ante orci volutpat lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse vel lectus lorem. Mauris ut volutpat odio. Sed dictum, ex et posuere placerat, nibh velit mattis urna, sed pretium neque purus in sem. Nam ultricies nunc nec urna vestibulum, quis dapibus leo tempus. Nunc turpis libero, vestibulum at dignissim in, volutpat vitae leo. Vivamus vel malesuada magna. Nullam sollicitudin arcu mollis erat vulputate condimentum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc felis mi, convallis in feugiat sit amet, porta facilisis purus. Proin hendrerit quam mi, sed pretium massa dignissim quis. Maecenas in nibh sit amet lacus imperdiet fermentum.
 
