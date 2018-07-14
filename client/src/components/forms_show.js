@@ -47,6 +47,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 function mapStateToProps({ forms }, ownProps) {
+  console.log(ownProps)
   return { form: forms[ownProps.match.params.id] }
 }
 

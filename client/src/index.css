@@ -9,3 +9,8 @@
 .form-spacer {
   padding-bottom: 20em;
 }
+
+.scroll-bar {
+  height:700px;
+  overflow: scroll;
+}

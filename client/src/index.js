@@ -7,7 +7,7 @@ import thunk from 'redux-thunk'
 
 import rootReducer from './reducers';
 import FormsIndex from './components/forms_index';
-import FormsNew from './components/forms_new';
+import FormsEdit from './components/forms_edit';
 import FormsShow from './components/forms_show';
 import './index.css';
 import './semantic/dist/semantic.min.css';
@@ -25,8 +25,7 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Switch>
-          <Route path="/forms/new" component={FormsNew} />
-          <Route path="/forms/:id/edit" component={FormsEdit} />
+          <Route path="/forms/edit/:id" component={FormsEdit} />
           <Route path="/forms/:id" component={FormsShow} />
           <Route path="/" component={FormsIndex} />
         </Switch>
