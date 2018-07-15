@@ -60,7 +60,7 @@ function createForm(values, callback) {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({form: values})})
       .then(response => response.json())
-      .then(form => dispatch({ type: 'CREATE_FORM', form: form }))
+      .then(form => dispatch({ type: 'RECEIVED_FORMS', form: form }))
       .then(() => callback());
   }
 }
