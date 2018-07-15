@@ -81,12 +81,12 @@ render() {
                   <Header as='h3'>Application Content</Header>
                   <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
                   <QuestionText />
-                  <button
-                    className="btn btn-danger pull-xs-right"
+                  <Menu.Item as='a'
                     onClick={this.onDeleteClick.bind(this)}
                   >
-                    Delete Form
-                  </button>
+                  <Icon name='trash alternate' />
+                  Delete
+                </Menu.Item>
                 </Grid.Column>
                 <Grid.Column width={8}>
                   <Container text>
