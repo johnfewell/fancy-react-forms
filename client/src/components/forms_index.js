@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 import { fetchForms, createForm } from '../actions';
 import { Card, Header, Container, Grid, Form, Divider } from 'semantic-ui-react';
 import HeaderMenu from './header_menu';
@@ -15,7 +16,9 @@ class FormsIndex extends Component {
   renderForms(){
     return _.map(this.props.forms, form => {
       const formUrl = `forms/${form.id}`
+      const editUrl = `forms/edit/${form.id}`
       return (
+        <div>
         <Card
           href={formUrl}
           key={form.id}
@@ -23,6 +26,8 @@ class FormsIndex extends Component {
           meta='0 Responses'
           description='Duis convallis varius tellus id gravida. Vestibulum pulvinar lacus hendrerit neque ullamcorper sagittis. Nullam quis lectus et ligula ullamcorper iaculis sit amet et purus. Morbi consectetur dui sit amet massa sollicitudin, et consectetur est malesuada. Pellentesque ac malesuada mauris.'
         />
+        <Link to={editUrl}>Edit Form</Link>
+        </div>
       )
     });
   }
@@ -41,8 +46,9 @@ class FormsIndex extends Component {
   }
 
   onSubmit(values) {
-    this.props.createForm(values);
-    console.log(values)
+    this.props.createForm(values, () => {
+      this.props.history.push("/");
+    });
   }
 
   render () {

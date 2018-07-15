@@ -86,6 +86,12 @@ render() {
                      <Form size='huge'>
                        {this.renderQuestions()}
                      </Form>
+                     <button
+                       className="btn btn-danger pull-xs-right"
+                       onClick={this.onDeleteClick.bind(this)}
+                     >
+                       Delete Form
+                     </button>
                    </div>
                  </Container>
                 </Grid.Column>

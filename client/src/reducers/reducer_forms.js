@@ -13,7 +13,9 @@ export default function(state = {}, action) {
     case 'RECEIVED_FORMS':
       return {forms_state: _.mapKeys(action.payload, 'id')}
     case 'CREATE_FORM':
-      return {}
+      return Object.assign({}, state, { forms: [...state.all, action.form] })
+    case 'DELETE_POST':
+      return _.omit(state, action.payload);
     default:
       return state;
   }
