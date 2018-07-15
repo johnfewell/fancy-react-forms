@@ -20,13 +20,11 @@ const VerticalSidebar = ({ animation, direction, visible, onDeleteClick }) => (
     visible={visible}
     width='thin'
   >
-    <Link to="/">
-      <Menu.Item as='a'>
+      <Menu.Item as={Link} to="/">
         <Icon name='home' />
         Home
       </Menu.Item>
-    </Link>
-    <Menu.Item as='a'>
+      <Menu.Item as='a'>
       <Icon name='orange tasks icon' />
       Long Text
     </Menu.Item>
