@@ -12,6 +12,8 @@ export default function(state = {}, action) {
       return { ...state, error: action.payload }
     case 'RECEIVED_FORMS':
       return {forms_state: _.mapKeys(action.payload, 'id')}
+    case 'CREATE_FORM':
+      return {}
     default:
       return state;
   }
