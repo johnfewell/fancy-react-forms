@@ -64,13 +64,15 @@ class FormsEdit extends Component {
 render() {
   const { animation, dimmed, direction, visible } = this.state
   const vertical = direction === 'bottom' || direction === 'top'
+  const { id } = this.props.match.params;
+
   return (
     <div>
       <Button disabled={vertical} onClick={this.handleAnimationChange}>
         Menu
       </Button>
       <Sidebar.Pushable as={Segment}>
-          <VerticalSidebar delanimation={animation} direction={direction} visible={visible} onDeleteClick={this.onDeleteClick} />
+          <VerticalSidebar delanimation={animation} direction={direction} visible={visible} onDeleteClick={this.onDeleteClick} formId={id} />
         <Sidebar.Pusher dimmed={dimmed && visible}>
           <Segment basic>
             <Grid>
@@ -79,6 +81,12 @@ render() {
                   <Header as='h3'>Application Content</Header>
                   <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
                   <QuestionText />
+                  <button
+                    className="btn btn-danger pull-xs-right"
+                    onClick={this.onDeleteClick.bind(this)}
+                  >
+                    Delete Form
+                  </button>
                 </Grid.Column>
                 <Grid.Column width={8}>
                   <Container text>
@@ -86,12 +94,7 @@ render() {
                      <Form size='huge'>
                        {this.renderQuestions()}
                      </Form>
-                     <button
-                       className="btn btn-danger pull-xs-right"
-                       onClick={this.onDeleteClick.bind(this)}
-                     >
-                       Delete Form
-                     </button>
+
                    </div>
                  </Container>
                 </Grid.Column>
