@@ -2,7 +2,8 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { matchPath } from 'react-router'
 import { connect } from 'react-redux';
-import { fetchForm, deleteForm } from '../actions';
+import { Field, reduxForm } from 'redux-form';
+import { fetchForm, deleteForm, createQuestion } from '../actions';
 import { Header,
           Container,
           Form,
@@ -31,6 +32,25 @@ class FormsEdit extends Component {
       dimmed: false,
       visible: false,
     };
+  }
+
+  renderField(field) {
+    return (
+      <div className="form-group">
+            <label>{field.label} </label>
+            <input
+            className="form-control"
+            type="text"
+            {...field.input}
+            />
+      </div>
+    );
+  }
+
+  onSubmit(values) {
+    const { id } = this.props.match.params;
+    values.form_id = id
+    this.props.createQuestion(values);
   }
 
   onDeleteClick(){
@@ -62,6 +82,7 @@ class FormsEdit extends Component {
   }
 
 render() {
+  const { handleSubmit } = this.props;
   const { animation, dimmed, direction, visible } = this.state
   const vertical = direction === 'bottom' || direction === 'top'
   const { id } = this.props.match.params;
@@ -80,7 +101,20 @@ render() {
                 <Grid.Column width={8}>
                   <Header as='h3'>Application Content</Header>
                   <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
-                  <QuestionText />
+                  <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                    <Field
+                      label="Question"
+                      name="content"
+                      component={this.renderField}
+                    />
+                    <Field
+                      label="Question Type"
+                      name="question_type"
+                      component={this.renderField}
+                    />
+                    <button type="submit" className="btn btn-primary">Submit</button>
+
+                  </form>
                   <Menu.Item as='a'
                     onClick={this.onDeleteClick.bind(this)}
                   >
@@ -94,7 +128,6 @@ render() {
                      <Form size='huge'>
                        {this.renderQuestions()}
                      </Form>
-
                    </div>
                  </Container>
                 </Grid.Column>
@@ -110,7 +143,8 @@ render() {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     fetchForm: fetchForm,
-    deleteForm: deleteForm
+    deleteForm: deleteForm,
+    createQuestion: createQuestion,
   }, dispatch);
 };
 
@@ -118,4 +152,18 @@ function mapStateToProps({ forms }, ownProps) {
   return { form: forms[ownProps.match.params.id] }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormsEdit);
+FormsEdit = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(FormsEdit);
+
+// export default connect(mapStateToProps, mapDispatchToProps)(FormsEdit);
+
+function validate(values){
+
+}
+
+export default reduxForm({
+  validate,
+  form: 'NewQuestion' // a unique name for this form
+})(FormsEdit);

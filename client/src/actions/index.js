@@ -60,8 +60,18 @@ function createForm(values, callback) {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({form: values})})
       .then(response => response.json())
-      .then(form => dispatch({ type: 'RECEIVED_FORMS', form: form }))
+      .then(json => dispatch({ type: 'RECEIVED_FORMS', payload: json }))
       .then(() => callback());
+  }
+}
+
+function createQuestion(values) {
+  return (dispatch) => { fetch(`/api/questions`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({question: values})})
+      .then(response => response.json())
+      .then(json => dispatch({ type: 'RECEIVED_FORM', payload: json }))
   }
 }
 
@@ -71,5 +81,6 @@ export {
   handleShow,
   handleHide,
   deleteForm,
-  createForm
+  createForm,
+  createQuestion
 }
