@@ -21,7 +21,7 @@ import QuestionText from './question_text'
 import VerticalSidebar from './vertical_sidebar'
 import '../index.css';
 
-class FormsShow extends Component {
+class FormsEdit extends Component {
 
   constructor(props) {
     super(props);
@@ -106,8 +106,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 function mapStateToProps({ forms }, ownProps) {
-  console.log(ownProps)
   return { form: forms[ownProps.match.params.id] }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormsShow);
+export default connect(mapStateToProps, mapDispatchToProps)(FormsEdit);
