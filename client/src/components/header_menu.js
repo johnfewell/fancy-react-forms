@@ -8,14 +8,14 @@ const HeaderMenu = ({firstUrl, firstString}) => (
   </Menu.Item>
 
 <Menu.Menu position='right'>
-  <Menu.Item href={firstUrl}>
+  <Menu.Item>
     <Label circular color='brown' size='big'>
       JF
     </Label>
 
     <Dropdown item icon='angle down' size='big' simple>
       <Dropdown.Menu>
-      
+
         <Dropdown.Item>Open</Dropdown.Item>
         <Dropdown.Item>Save...</Dropdown.Item>
         <Dropdown.Item>Edit Permissions</Dropdown.Item>

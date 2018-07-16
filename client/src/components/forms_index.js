@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { fetchForms, createForm } from '../actions';
 import { Card, Header, Container, Grid, Form, Divider, Button, Icon, Menu, Dropdown, Label, Segment } from 'semantic-ui-react';
 import HeaderMenu from './header_menu';
+import SecondaryMenu from './secondary_menu';
 
 class FormsIndex extends Component {
   componentDidMount() {
@@ -18,7 +19,7 @@ class FormsIndex extends Component {
       const formUrl = `forms/${form.id}`
       const editUrl = `forms/edit/${form.id}`
       return (
-
+        <Grid.Column>
           <Card>
             <Card.Content as={Link} to={editUrl}>
               <Card.Header>{form.name}</Card.Header>
@@ -36,7 +37,7 @@ class FormsIndex extends Component {
                 <Menu.Menu position='right'>
                  <Dropdown item icon='ellipsis horizontal' simple>
                    <Dropdown.Menu>
-                     <Dropdown.Item>Edit</Dropdown.Item>
+                     <Dropdown.Item as={Link} to={editUrl}>Edit</Dropdown.Item>
                      <Dropdown.Item as={Link} to={formUrl}>Preview</Dropdown.Item>
                      <Dropdown.Item>Duplicate</Dropdown.Item>
                      <Dropdown.Item>Results</Dropdown.Item>
@@ -48,7 +49,7 @@ class FormsIndex extends Component {
              </Menu>
             </Card.Content>
           </Card>
-
+        </Grid.Column>
       )
     });
   }
@@ -84,10 +85,12 @@ class FormsIndex extends Component {
         <Container fluid>
         <Grid columns='equal'>
           <Grid.Column width={3}>
-            <Segment>1</Segment>
+          
           </Grid.Column>
+          <Grid.Column>
+          <SecondaryMenu firstUrl={newFormUrl} firstString={newFormString}/>
           <Grid.Column width={10}>
-            <Card.Group itemsPerRow={5}>
+          <Grid doubling columns={5}>
               {this.renderForms()}
             <Card>
               <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
@@ -98,10 +101,8 @@ class FormsIndex extends Component {
                 />
               </form>
             </Card>
-            </Card.Group>
-          </Grid.Column>
-          <Grid.Column width={1}>
-
+            </Grid>
+            </Grid.Column>
           </Grid.Column>
         </Grid>
       </Container>
