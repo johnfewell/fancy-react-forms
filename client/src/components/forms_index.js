@@ -85,7 +85,7 @@ class FormsIndex extends Component {
         <Container fluid>
         <Grid columns='equal'>
           <Grid.Column width={3}>
-          
+
           </Grid.Column>
           <Grid.Column>
           <SecondaryMenu firstUrl={newFormUrl} firstString={newFormString}/>
