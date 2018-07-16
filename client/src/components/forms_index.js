@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { fetchForms, createForm } from '../actions';
-import { Card, Header, Container, Grid, Form, Divider } from 'semantic-ui-react';
+import { Card, Header, Container, Grid, Form, Divider, Button } from 'semantic-ui-react';
 import HeaderMenu from './header_menu';
 
 class FormsIndex extends Component {
@@ -18,16 +18,27 @@ class FormsIndex extends Component {
       const formUrl = `forms/${form.id}`
       const editUrl = `forms/edit/${form.id}`
       return (
-        <div>
-        <Card
-          href={formUrl}
-          key={form.id}
-          header={form.name}
-          meta='0 Responses'
-          description='Duis convallis varius tellus id gravida. Vestibulum pulvinar lacus hendrerit neque ullamcorper sagittis. Nullam quis lectus et ligula ullamcorper iaculis sit amet et purus. Morbi consectetur dui sit amet massa sollicitudin, et consectetur est malesuada. Pellentesque ac malesuada mauris.'
-        />
-        <Link to={editUrl}>Edit Form</Link>
-        </div>
+
+          <Card>
+            <Card.Content>
+              <Card.Header>{form.name}</Card.Header>
+              <Card.Meta>0 Responses</Card.Meta>
+              <Card.Description>
+                Duis convallis varius tellus id gravida. Vestibulum pulvinar lacus hendrerit neque ullamcorper sagittis.
+              </Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+              <div className='ui two buttons'>
+                <Button as={Link} to={formUrl} basic color='green'>
+                  View Form
+                </Button>
+                <Button as={Link} to={editUrl} basic color='red'>
+                  Edit Form
+                </Button>
+              </div>
+            </Card.Content>
+          </Card>
+
       )
     });
   }
@@ -58,9 +69,9 @@ class FormsIndex extends Component {
     const newFormString = 'New Form';
 
     return (
-      <Container>
+        <div>
         <HeaderMenu firstUrl={newFormUrl} firstString={newFormString}/>
-        <Header as='h1'>Forms</Header>
+        <Container>
         <Card.Group itemsPerRow={4}>
           {this.renderForms()}
 
@@ -75,6 +86,7 @@ class FormsIndex extends Component {
         </Card>
         </Card.Group>
       </Container>
+      </div>
     );
   }
 }

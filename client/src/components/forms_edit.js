@@ -74,7 +74,7 @@ class FormsEdit extends Component {
   }
 
   renderQuestions(){
-    if (this.props.form == null) {
+    if (this.props.form == null ) {
       return <Loader active inline='centered' />
     } else {
       return this.props.form.questions.map((question,i) => <FormGroupShow question={question} index={i} />)
