@@ -12,8 +12,9 @@ export default function(state = {}, action) {
       return { ...state, error: action.payload }
     case 'RECEIVED_FORMS':
       return {forms_state: _.mapKeys(action.payload, 'id')}
-    // case 'CREATE_FORM':
-    //   return Object.assign({}, state, { forms: [...state.all, action.form] })
+    case 'CREATE_FORM':
+       const newForm = Object.assign({}, action.payload);
+       return { ...state, forms_state: {...state.forms_state, [newForm.id]: newForm }};
     case 'DELETE_POST':
       return _.omit(state, action.payload);
     default:

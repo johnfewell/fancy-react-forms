@@ -68,9 +68,7 @@ class FormsIndex extends Component {
   }
 
   onSubmit(values) {
-    this.props.createForm(values, () => {
-      this.props.history.push("/");
-    });
+    this.props.createForm(values)
   }
 
   render () {
@@ -85,7 +83,7 @@ class FormsIndex extends Component {
         <Container fluid>
         <Grid columns='equal'>
           <Grid.Column width={3}>
-          
+
           </Grid.Column>
           <Grid.Column>
           <SecondaryMenu firstUrl={newFormUrl} firstString={newFormString}/>

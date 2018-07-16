@@ -54,14 +54,13 @@ function deleteForm(id, callback) {
   }
 }
 
-function createForm(values, callback) {
+function createForm(values) {
   return (dispatch) => { fetch(`/api/forms`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({form: values})})
       .then(response => response.json())
-      .then(json => dispatch({ type: 'RECEIVED_FORMS', payload: json }))
-      .then(() => callback());
+      .then(json => dispatch({ type: 'CREATE_FORM', payload: json }));
   }
 }
 
