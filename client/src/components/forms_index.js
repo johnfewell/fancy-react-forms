@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { fetchForms, createForm } from '../actions';
-import { Card, Header, Container, Grid, Form, Divider, Button, Icon, Menu, Dropdown, Label } from 'semantic-ui-react';
+import { Card, Header, Container, Grid, Form, Divider, Button, Icon, Menu, Dropdown, Label, Segment } from 'semantic-ui-react';
 import HeaderMenu from './header_menu';
 
 class FormsIndex extends Component {
@@ -81,20 +81,29 @@ class FormsIndex extends Component {
     return (
         <div>
         <HeaderMenu firstUrl={newFormUrl} firstString={newFormString}/>
-        <Container>
-        <Card.Group itemsPerRow={4}>
-          {this.renderForms()}
+        <Container fluid>
+        <Grid columns='equal'>
+          <Grid.Column width={3}>
+            <Segment>1</Segment>
+          </Grid.Column>
+          <Grid.Column width={10}>
+            <Card.Group itemsPerRow={5}>
+              {this.renderForms()}
+            <Card>
+              <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                <Field
+                  label="Name"
+                  name="name"
+                  component={this.renderField}
+                />
+              </form>
+            </Card>
+            </Card.Group>
+          </Grid.Column>
+          <Grid.Column width={1}>
 
-        <Card>
-          <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-            <Field
-              label="Name"
-              name="name"
-              component={this.renderField}
-            />
-          </form>
-        </Card>
-        </Card.Group>
+          </Grid.Column>
+        </Grid>
       </Container>
       </div>
     );
