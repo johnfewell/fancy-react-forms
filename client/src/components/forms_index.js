@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { fetchForms, createForm } from '../actions';
-import { Card, Header, Container, Grid, Form, Divider, Button } from 'semantic-ui-react';
+import { Card, Header, Container, Grid, Form, Divider, Button, Icon, Menu, Dropdown, Label } from 'semantic-ui-react';
 import HeaderMenu from './header_menu';
 
 class FormsIndex extends Component {
@@ -20,22 +20,32 @@ class FormsIndex extends Component {
       return (
 
           <Card>
-            <Card.Content>
+            <Card.Content as={Link} to={editUrl}>
               <Card.Header>{form.name}</Card.Header>
               <Card.Meta>0 Responses</Card.Meta>
               <Card.Description>
                 Duis convallis varius tellus id gravida. Vestibulum pulvinar lacus hendrerit neque ullamcorper sagittis.
               </Card.Description>
             </Card.Content>
+
             <Card.Content extra>
-              <div className='ui two buttons'>
-                <Button as={Link} to={formUrl} basic color='green'>
-                  View Form
-                </Button>
-                <Button as={Link} to={editUrl} basic color='red'>
-                  Edit Form
-                </Button>
-              </div>
+            <Menu secondary>
+                <Menu.Item>
+                  5 Responses
+                </Menu.Item>
+                <Menu.Menu position='right'>
+                 <Dropdown item icon='ellipsis horizontal' simple>
+                   <Dropdown.Menu>
+                     <Dropdown.Item>Edit</Dropdown.Item>
+                     <Dropdown.Item as={Link} to={formUrl}>Preview</Dropdown.Item>
+                     <Dropdown.Item>Duplicate</Dropdown.Item>
+                     <Dropdown.Item>Results</Dropdown.Item>
+                     <Dropdown.Divider />
+                     <Dropdown.Item><Label color='red'>Delete</Label></Dropdown.Item>
+                   </Dropdown.Menu>
+                 </Dropdown>
+               </Menu.Menu>
+             </Menu>
             </Card.Content>
           </Card>
 

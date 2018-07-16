@@ -9,21 +9,13 @@ const HeaderMenu = ({firstUrl, firstString}) => (
 
 <Menu.Menu position='right'>
   <Menu.Item href={firstUrl}>
-    <Label circular color='brown'>
+    <Label circular color='brown' size='big'>
       JF
     </Label>
 
-    <Dropdown item icon='angle down' simple>
+    <Dropdown item icon='angle down' size='big' simple>
       <Dropdown.Menu>
-        <Dropdown.Item>
-          <Icon name='dropdown' />
-          <span className='text'>New</span>
-
-          <Dropdown.Menu>
-            <Dropdown.Item>Document</Dropdown.Item>
-            <Dropdown.Item>Image</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown.Item>
+      
         <Dropdown.Item>Open</Dropdown.Item>
         <Dropdown.Item>Save...</Dropdown.Item>
         <Dropdown.Item>Edit Permissions</Dropdown.Item>
