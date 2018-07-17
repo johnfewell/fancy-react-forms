@@ -26,7 +26,8 @@ class FormsController < ApplicationController
 
   def destroy
     form = Form.find(params[:id])
-    if form.destroy
+    form_questions = Question.where(form_id: params[:id])
+    if form_questions.destroy_all && form.destroy
       render json: { message: "Your form was deleted"}, status: 200
     else
       render json: { message: "There was an error deleting form."}
