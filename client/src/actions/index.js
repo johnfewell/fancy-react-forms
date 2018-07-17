@@ -70,7 +70,7 @@ function createQuestion(values) {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({question: values})})
       .then(response => response.json())
-      .then(json => dispatch({ type: 'RECEIVED_FORM', payload: json }))
+      .then(json => dispatch({ type: 'CREATE_QUESTION', payload: json }))
   }
 }
 

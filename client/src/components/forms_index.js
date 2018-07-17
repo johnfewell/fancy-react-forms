@@ -18,20 +18,21 @@ class FormsIndex extends Component {
 
   handleDelete = (id) => {
     const noop = function(){};
-    confirmAlert({
-      title: 'Confirm delete',
-      message: 'This will delete your form and all of its questions',
-      buttons: [
-        {
-          label: 'Yes',
-          onClick: () => this.props.deleteForm(82, noop)
-        },
-        {
-          label: 'No',
-          onClick: () => this.props.history.push('/')
-        }
-      ]
-    })
+    this.props.deleteForm(id, noop)
+    // confirmAlert({
+    //   title: 'Confirm delete',
+    //   message: 'This will delete your form and all of its questions',
+    //   buttons: [
+    //     {
+    //       label: 'Yes',
+    //       onClick: () => this.props.deleteForm(82, noop)
+    //     },
+    //     {
+    //       label: 'No',
+    //       onClick: () => this.props.history.push('/')
+    //     }
+    //   ]
+    // })
   };
 
   renderForms(){

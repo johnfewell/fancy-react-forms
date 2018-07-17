@@ -15,8 +15,19 @@ export default function(state = {}, action) {
     case 'ADD_FORM_DIALOG':
 
     case 'CREATE_FORM':
-       const newForm = Object.assign({}, action.payload);
-       return { ...state, forms_state: {...state.forms_state, [newForm.id]: newForm }};
+      const newForm = Object.assign({}, action.payload);
+      return { ...state, forms_state: {...state.forms_state, [newForm.id]: newForm }};
+    case 'CREATE_QUESTION':
+      const newQuestion = Object.assign({}, action.payload);
+      const formId = Object.keys(state)[0]
+      const formObject = state[formId]
+     debugger
+     // { ...state,
+     //      state[formId].questions: {
+     //        ...state[Object.keys(state)[0]].questions,
+     //        [newQuestion.id]: newQuestion
+     //    }}
+
     case 'DELETE_FORM':
       const forms = state.forms_state.filter(form =>
            form.id !== action.payload

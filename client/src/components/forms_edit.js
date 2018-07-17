@@ -67,7 +67,7 @@ class FormsEdit extends Component {
   }
 
   renderQuestions(){
-    if (this.props.form == null ) {
+    if (this.props.form == null || this.props.form.questions == null ) {
       return <Loader active inline='centered' />
     } else {
       return this.props.form.questions.map((question,i) => <FormGroupShow question={question} index={i} />)
@@ -134,7 +134,7 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 };
 
-function mapStateToProps({ forms }, ownProps) {
+function mapStateToProps({ forms }, ownProps) {  
   return { form: forms[ownProps.match.params.id] }
 }
 
@@ -142,8 +142,6 @@ FormsEdit = connect(
     mapStateToProps,
     mapDispatchToProps
 )(FormsEdit);
-
-// export default connect(mapStateToProps, mapDispatchToProps)(FormsEdit);
 
 function validate(values){
 
