@@ -1,48 +1,36 @@
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom';
 import React, { Component } from 'react'
-import {
-  Header,
-  Icon,
-  Image,
-  Menu,
-  Sidebar,
-} from 'semantic-ui-react'
+import { Icon, Menu } from 'semantic-ui-react'
 
-const VerticalSidebar = ({ animation, direction, visible, onDeleteClick }) => (
-  <Sidebar
-    as={Menu}
-    animation={animation}
-    direction={direction}
-    icon='labeled'
-    inverted
-    vertical
-    visible={visible}
-    width='thin'
-  >
-      <Menu.Item as={Link} to="/">
-        <Icon name='home' />
-        Home
-      </Menu.Item>
-      <Menu.Item as='a'>
-      <Icon name='orange tasks icon' />
-      Long Text
-    </Menu.Item>
-    <Menu.Item as='a'>
-      <Icon name='camera' />
-      Channels
-    </Menu.Item>
-    <Menu.Item as='a' onClick={() => { if (window.confirm('Are you sure you wish to delete this form?')) onDeleteClick() } }>
-      <Icon name='trash alternate' />
-      Delete
-    </Menu.Item>
-  </Sidebar>
-)
+export default class VerticalSidebar extends Component {
+  state = { activeItem: 'gamepad' }
 
-VerticalSidebar.propTypes = {
-  animation: PropTypes.string,
-  direction: PropTypes.string,
-  visible: PropTypes.bool,
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+  render() {
+    const { activeItem } = this.state
+
+    return (
+      <Menu icon vertical>
+        <Menu.Item name='gamepad' active={activeItem === 'gamepad'} onClick={this.handleItemClick}>
+          <Icon name='gamepad' />
+        </Menu.Item>
+
+        <Menu.Item
+          name='video camera'
+          active={activeItem === 'video camera'}
+          onClick={this.handleItemClick}
+        >
+          <Icon name='video camera' />
+        </Menu.Item>
+
+        <Menu.Item
+          name='video play'
+          active={activeItem === 'video play'}
+          onClick={this.handleItemClick}
+        >
+          <Icon name='video play' />
+        </Menu.Item>
+      </Menu>
+    )
+  }
 }
-
-export default VerticalSidebar
