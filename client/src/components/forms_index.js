@@ -130,7 +130,7 @@ class FormsIndex extends Component {
 }
 
 function mapStateToProps(state) {
-  return { forms: state.forms.forms_state};
+  return { forms: state.forms.formsState};
 }
 
 const mapDispatchToProps = (dispatch) => {

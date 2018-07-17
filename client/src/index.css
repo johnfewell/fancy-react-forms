@@ -14,3 +14,9 @@
   height:700px;
   overflow: scroll;
 }
+
+.form-body {
+  background-image: url('./components/background.jpeg');
+  background-color: #cccccc;
+  background-attachment: fixed;
+}

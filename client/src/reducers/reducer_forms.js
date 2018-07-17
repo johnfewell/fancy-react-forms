@@ -11,25 +11,25 @@ export default function(state = {}, action) {
     case 'FETCH_FORMS_ERROR':
       return { ...state, error: action.payload }
     case 'RECEIVED_FORMS':
-      return {forms_state: _.mapKeys(action.payload, 'id')}
+      return {formsState: action.payload}
     case 'ADD_FORM_DIALOG':
 
     case 'CREATE_FORM':
       const newForm = Object.assign({}, action.payload);
-      return { ...state, forms_state: {...state.forms_state, [newForm.id]: newForm }};
+      return { ...state, formsState: {...state.formsState, [newForm.id]: newForm }};
     case 'CREATE_QUESTION':
       const newQuestion = Object.assign({}, action.payload);
       const formId = Object.keys(state)[0]
-      const formObject = state[formId]
-     debugger
-     // { ...state,
-     //      state[formId].questions: {
-     //        ...state[Object.keys(state)[0]].questions,
+      const formObject = state[formId].questions
+      debugger
+     // return { ...state,
+     //      questions: {
+     //        ...state[action.payload.form_id].questions,
      //        [newQuestion.id]: newQuestion
      //    }}
 
     case 'DELETE_FORM':
-      const forms = state.forms_state.filter(form =>
+      const forms = state.formsState.filter(form =>
            form.id !== action.payload
         )
       return forms
@@ -39,18 +39,18 @@ export default function(state = {}, action) {
 }
 //
 // return Object.assign({}, state, {
-//    forms_state: [...state.forms_state.filter(form => form.id !== action.payload)],
+//    formsState: [...state.formsState.filter(form => form.id !== action.payload)],
 //  });
 //
-// var filtered = Object.filter(state.forms_state, form => form.id !== action.payload);
+// var filtered = Object.filter(state.formsState, form => form.id !== action.payload);
 //
 // return state.filter(({ id }) => id !== action.payload);
 //
 //
-// const forms = state.forms_state.filter(form =>
+// const forms = state.formsState.filter(form =>
 //      form.id !== action.payload
 //   )
-// { forms_state: state.forms_state.filter(form =>
+// { formsState: state.formsState.filter(form =>
 //      form.id !== action.payload
 //   )}
 //https://stackoverflow.com/questions/5072136/javascript-filter-for-objects

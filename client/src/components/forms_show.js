@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { matchPath } from 'react-router'
 import { connect } from 'react-redux';
 import { fetchForm, handleHide, handleShow } from '../actions';
-import { Header, Container, Form, Loader, Image} from 'semantic-ui-react';
+import { Header, Container, Form, Loader, Image, Button} from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import FormGroupShow from './form_group_show';
 import '../index.css';
@@ -30,12 +30,16 @@ class FormsShow extends Component {
 
   render(){
     return (
+      <div className='form-body'>
        <Container text>
         <div className='form-spacer'></div>
         <Form size='huge'>
           {this.renderQuestions()}
+            <Button positive size='huge'>Positive Button</Button>
+            <div className='form-spacer'></div>
         </Form>
       </Container>
+      </div>
     )
   }
 }
