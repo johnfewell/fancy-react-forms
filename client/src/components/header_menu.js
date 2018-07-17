@@ -4,7 +4,7 @@ import { Menu, Button, Header, Icon, Label, Dropdown } from 'semantic-ui-react'
 const HeaderMenu = ({firstUrl, firstString}) => (
 <Menu pointing secondary attached='top'>
   <Menu.Item >
-  <Icon rotated='clockwise' name='star half full' size='huge'/>
+  <Icon rotated='clockwise' name='fire' color="grey" size='huge'/>
   </Menu.Item>
 
 <Menu.Menu position='right'>

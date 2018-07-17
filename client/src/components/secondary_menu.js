@@ -10,7 +10,7 @@ const SecondaryMenu = ({firstUrl, firstString}) => (
   </Menu.Item>
 <Menu.Menu position='right'>
   <Menu.Item href={firstUrl}>
-    <Button>{firstString}</Button>
+    <Button icon="plus" content="New Form" labelPostition="left" color="teal"/>
   </Menu.Item>
   </Menu.Menu>
 </Menu>
