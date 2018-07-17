@@ -4,7 +4,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
-import { fetchForms, createForm } from '../actions';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'
+import { fetchForms, createForm, deleteForm } from '../actions';
 import { Card, Header, Container, Grid, Form, Divider, Button, Icon, Menu, Dropdown, Label, Segment } from 'semantic-ui-react';
 import HeaderMenu from './header_menu';
 import SecondaryMenu from './secondary_menu';
@@ -13,6 +15,24 @@ class FormsIndex extends Component {
   componentDidMount() {
     this.props.fetchForms();
   }
+
+  handleDelete = (id) => {
+    const noop = function(){};
+    confirmAlert({
+      title: 'Confirm delete',
+      message: 'This will delete your form and all of its questions',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => this.props.deleteForm(82, noop)
+        },
+        {
+          label: 'No',
+          onClick: () => this.props.history.push('/')
+        }
+      ]
+    })
+  };
 
   renderForms(){
     return _.map(this.props.forms, form => {
@@ -28,7 +48,6 @@ class FormsIndex extends Component {
                 Duis convallis varius tellus id gravida. Vestibulum pulvinar lacus hendrerit neque ullamcorper sagittis.
               </Card.Description>
             </Card.Content>
-
             <Card.Content extra>
             <Menu secondary>
                 <Menu.Item>
@@ -42,7 +61,7 @@ class FormsIndex extends Component {
                      <Dropdown.Item>Duplicate</Dropdown.Item>
                      <Dropdown.Item>Results</Dropdown.Item>
                      <Dropdown.Divider />
-                     <Dropdown.Item><Label color='red'>Delete</Label></Dropdown.Item>
+                     <Dropdown.Item onClick={this.handleDelete}><Label color='red'>Delete</Label></Dropdown.Item>
                    </Dropdown.Menu>
                  </Dropdown>
                </Menu.Menu>
@@ -116,13 +135,10 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     fetchForms: fetchForms,
-    createForm: createForm
+    createForm: createForm,
+    deleteForm: deleteForm
   }, dispatch);
 };
-
-// export default connect(mapStateToProps, { fetchForms })(reduxForm({
-//       form: 'FormNewForm',
-// })(FormsIndex);
 
 FormsIndex = connect(
     mapStateToProps,

@@ -12,12 +12,36 @@ export default function(state = {}, action) {
       return { ...state, error: action.payload }
     case 'RECEIVED_FORMS':
       return {forms_state: _.mapKeys(action.payload, 'id')}
+    case 'ADD_FORM_DIALOG':
+
     case 'CREATE_FORM':
        const newForm = Object.assign({}, action.payload);
        return { ...state, forms_state: {...state.forms_state, [newForm.id]: newForm }};
-    case 'DELETE_POST':
-      return _.omit(state, action.payload);
+    case 'DELETE_FORM':
+      const forms = state.forms_state.filter(form =>
+           form.id !== action.payload
+        )
+      return forms
     default:
       return state;
   }
 }
+//
+// return Object.assign({}, state, {
+//    forms_state: [...state.forms_state.filter(form => form.id !== action.payload)],
+//  });
+//
+// var filtered = Object.filter(state.forms_state, form => form.id !== action.payload);
+//
+// return state.filter(({ id }) => id !== action.payload);
+//
+//
+// const forms = state.forms_state.filter(form =>
+//      form.id !== action.payload
+//   )
+// { forms_state: state.forms_state.filter(form =>
+//      form.id !== action.payload
+//   )}
+//https://stackoverflow.com/questions/5072136/javascript-filter-for-objects
+//https://stackoverflow.com/questions/37777525/delete-an-item-from-redux-state
+//https://learn.co/tracks/full-stack-web-development-v5/redux/using-redux-with-react/redux-delete-codealong
