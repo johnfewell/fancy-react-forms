@@ -7,9 +7,10 @@ import { Link } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import { fetchForms, createForm, deleteForm } from '../actions';
-import { Card, Header, Container, Grid, Form, Divider, Button, Icon, Menu, Dropdown, Label, Segment } from 'semantic-ui-react';
-import HeaderMenu from './header_menu';
-import SecondaryMenu from './secondary_menu';
+import { Card, Header, Container, Grid, Form, Divider, Button, Icon, Menu, Dropdown, Label, Segment, Loader } from 'semantic-ui-react';
+import FormCard from '../components/form_card.js'
+import HeaderMenu from '../components/header_menu';
+import SecondaryMenu from '../components/secondary_menu';
 
 class FormsIndex extends Component {
   componentDidMount() {
@@ -40,49 +41,26 @@ class FormsIndex extends Component {
       const formUrl = `forms/${form.id}`
       const editUrl = `forms/edit/${form.id}`
       return (
-        <Grid.Column>
-          <Card>
-            <Card.Content as={Link} to={editUrl}>
-              <Card.Header>{form.name}</Card.Header>
-              <Card.Meta>0 Responses</Card.Meta>
-              <Card.Description>
-                Duis convallis varius tellus id gravida. Vestibulum pulvinar lacus hendrerit neque ullamcorper sagittis.
-              </Card.Description>
-            </Card.Content>
-            <Card.Content extra>
-            <Menu secondary>
-                <Menu.Item>
-                  5 Responses
-                </Menu.Item>
-                <Menu.Menu position='right'>
-                 <Dropdown item icon='ellipsis horizontal' simple>
-                   <Dropdown.Menu>
-                     <Dropdown.Item as={Link} to={editUrl}>Edit</Dropdown.Item>
-                     <Dropdown.Item as={Link} to={formUrl}>Preview</Dropdown.Item>
-                     <Dropdown.Item>Duplicate</Dropdown.Item>
-                     <Dropdown.Item>Results</Dropdown.Item>
-                     <Dropdown.Divider />
-                     <Dropdown.Item onClick={this.handleDelete}><Label color='red'>Delete</Label></Dropdown.Item>
-                   </Dropdown.Menu>
-                 </Dropdown>
-               </Menu.Menu>
-             </Menu>
-            </Card.Content>
-          </Card>
-        </Grid.Column>
+        <FormCard
+        editUrl={editUrl}
+        formUrl={formUrl}
+        form={form}
+        handleDelete={this.handleDelete}
+        />
       )
     });
-  }
+    }
+
 
   renderField(field) {
     return (
       <div className="form-group">
-            <label>{field.label} </label>
-            <input
-            className="form-control"
-            type="text"
-            {...field.input}
-            />
+        <label>{field.label} </label>
+        <input
+        className="form-control"
+        type="text"
+        {...field.input}
+        />
       </div>
     );
   }
@@ -98,12 +76,11 @@ class FormsIndex extends Component {
     const newFormString = 'New Form';
 
     return (
-        <div>
+      <div>
         <HeaderMenu firstUrl={newFormUrl} firstString={newFormString}/>
         <Container fluid>
         <Grid columns='equal'>
           <Grid.Column width={3}>
-
           </Grid.Column>
           <Grid.Column>
           <SecondaryMenu firstUrl={newFormUrl} firstString={newFormString}/>

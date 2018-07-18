@@ -20,7 +20,7 @@ import { bindActionCreators } from 'redux';
 import FormGroupShow from './form_group_show';
 import QuestionText from './question_text';
 import VerticalSidebar from './vertical_sidebar';
-import HeaderMenu from './header_menu';
+import HeaderMenu from '../components/header_menu';
 import FormsRenderQuestions from './forms_render_questions';
 import '../index.css';
 
