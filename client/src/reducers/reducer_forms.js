@@ -19,15 +19,10 @@ export default function(state = {}, action) {
       return { ...state, formsState: {...state.formsState, [newForm.id]: newForm }};
     case 'CREATE_QUESTION':
       const newQuestion = Object.assign({}, action.payload);
-      const formId = Object.keys(state)[0]
-      const formObject = state[formId].questions
-      debugger
-     // return { ...state,
-     //      questions: {
-     //        ...state[action.payload.form_id].questions,
-     //        [newQuestion.id]: newQuestion
-     //    }}
-
+      let questions = [...state[newQuestion.form_id].questions, newQuestion]
+      let val = {...state}
+      val[newQuestion.form_id].questions = val[newQuestion.form_id].questions.concat(newQuestion)
+      return val
     case 'DELETE_FORM':
       const forms = state.formsState.filter(form =>
            form.id !== action.payload
