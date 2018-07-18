@@ -34,12 +34,12 @@ class FormsEdit extends Component {
   renderField(field) {
     return (
       <div className="form-group">
-            <label>{field.label} </label>
-            <input
-            className="form-control"
-            type="text"
-            {...field.input}
-            />
+        <label>{field.label} </label>
+        <input
+        className="form-control"
+        type="text"
+        {...field.input}
+        />
       </div>
     );
   }
@@ -57,6 +57,24 @@ class FormsEdit extends Component {
     });
   }
 
+  renderQuestionInputs(){
+    if (this.props.form == null || this.props.form.questions == null ) {
+      return <Loader active inline='centered' />
+    } else {
+    return (
+      <form onSubmit={this.props.handleSubmit(this.onSubmit.bind(this))}>
+       {this.props.form.questions.map((question,i) =>
+        <Field
+          label="Question"
+          name={i}
+          component={this.renderField}
+        />
+      )}
+      <button type="submit" className="btn btn-primary">Submit</button>
+    </form>)
+  }
+  }
+
   componentDidMount() {
     const match = matchPath(this.props.history.location.pathname, {
       path: '/forms/edit/:id',
@@ -67,7 +85,6 @@ class FormsEdit extends Component {
     this.props.fetchForm(id);
   }
 
-
 render() {
   const { handleSubmit } = this.props;
   const { id } = this.props.match.params;
@@ -75,47 +92,34 @@ render() {
   return (
     <div>
       <HeaderMenu />
-          <Segment basic>
-            <Grid>
-              <Grid.Row>
-                <Grid.Column width={1}>
+        <Segment basic>
+          <Grid>
+            <Grid.Row>
+              <Grid.Column width={1}>
                 <VerticalSidebar />
-                </Grid.Column>
-                <Grid.Column width={7}>
-                  <Header as='h3'>Application Content</Header>
-                  <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                    <Field
-                      label="Question"
-                      name="content"
-                      component={this.renderField}
-                    />
-                    <Field
-                      label="Question Type"
-                      name="question_type"
-                      component={this.renderField}
-                    />
-                    <button type="submit" className="btn btn-primary">Submit</button>
-
-                  </form>
-                  <Menu.Item as='a'
-                    onClick={this.onDeleteClick.bind(this)}
-                  >
-                  <Icon name='trash alternate' />
-                  Delete
-                </Menu.Item>
-                </Grid.Column>
-                <Grid.Column width={8}>
-                  <Container text>
-                  <div className='scroll-bar'>
-                     <Form size='huge'>
-                       <FormsRenderQuestions form={this.props.form}/>
-                     </Form>
-                   </div>
-                 </Container>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Segment>
+              </Grid.Column>
+              <Grid.Column width={7}>
+                <Header as='h3'>Application Content</Header>
+                  {this.renderQuestionInputs()}
+                <Menu.Item as='a'
+                  onClick={this.onDeleteClick.bind(this)}
+                >
+                <Icon name='trash alternate' />
+                Delete
+              </Menu.Item>
+              </Grid.Column>
+              <Grid.Column width={8}>
+                <Container text>
+                <div className='scroll-bar'>
+                   <Form size='huge'>
+                     <FormsRenderQuestions form={this.props.form}/>
+                   </Form>
+                 </div>
+               </Container>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Segment>
     </div>
   )}
 }

@@ -16,7 +16,7 @@
 }
 
 .form-body {
-  background-image: url('./components/background.jpeg');
+  background-image: url('./containers/background.jpeg');
   background-color: #cccccc;
   background-attachment: fixed;
 }
