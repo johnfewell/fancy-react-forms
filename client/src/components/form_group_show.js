@@ -19,7 +19,7 @@ class FormGroupShow extends Component {
     const questionLabel = `${this.props.index+1} -> ${this.props.question.content}`
 
     return (
-      <div>
+      <div key={this.props.index}>
       <Observer onChange={(inView) => {this.handleChange(inView)}} threshold='.9999' >
         <Dimmer.Dimmable as={Segment} dimmed={active} className='borderless form-group-padding'>
           <Dimmer active={active} inverted onClickOutside={this.handleHide} />

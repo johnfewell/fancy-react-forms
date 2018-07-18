@@ -20,9 +20,9 @@ export default function(state = {}, action) {
     case 'CREATE_QUESTION':
       const newQuestion = Object.assign({}, action.payload);
       let questions = [...state[newQuestion.form_id].questions, newQuestion]
-      let val = {...state}
-      val[newQuestion.form_id].questions = val[newQuestion.form_id].questions.concat(newQuestion)
-      return val
+      let newState = {...state}
+      newState[newQuestion.form_id].questions = newState[newQuestion.form_id].questions.concat(newQuestion)
+      return newState
     case 'DELETE_FORM':
       const forms = state.formsState.filter(form =>
            form.id !== action.payload

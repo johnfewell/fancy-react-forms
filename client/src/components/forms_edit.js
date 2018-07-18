@@ -18,9 +18,10 @@ import { Header,
         } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import FormGroupShow from './form_group_show';
-import QuestionText from './question_text'
-import VerticalSidebar from './vertical_sidebar'
+import QuestionText from './question_text';
+import VerticalSidebar from './vertical_sidebar';
 import HeaderMenu from './header_menu';
+import FormsRenderQuestions from './forms_render_questions';
 import '../index.css';
 
 class FormsEdit extends Component {
@@ -66,13 +67,6 @@ class FormsEdit extends Component {
     this.props.fetchForm(id);
   }
 
-  renderQuestions(){
-    if (this.props.form == null || this.props.form.questions == null ) {
-      return <Loader active inline='centered' />
-    } else {
-      return this.props.form.questions.map((question,i) => <FormGroupShow question={question} index={i} />)
-     }
-  }
 
 render() {
   const { handleSubmit } = this.props;
@@ -114,7 +108,7 @@ render() {
                   <Container text>
                   <div className='scroll-bar'>
                      <Form size='huge'>
-                       {this.renderQuestions()}
+                       <FormsRenderQuestions form={this.props.form}/>
                      </Form>
                    </div>
                  </Container>
@@ -134,7 +128,7 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 };
 
-function mapStateToProps({ forms }, ownProps) {  
+function mapStateToProps({ forms }, ownProps) {
   return { form: forms[ownProps.match.params.id] }
 }
 
