@@ -22,6 +22,7 @@ import QuestionText from './question_text';
 import VerticalSidebar from './vertical_sidebar';
 import HeaderMenu from '../components/header_menu';
 import FormsRenderQuestions from './forms_render_questions';
+import FormsNew from './forms_new';
 import '../index.css';
 
 class FormsEdit extends Component {
@@ -58,21 +59,16 @@ class FormsEdit extends Component {
   }
 
   renderQuestionInputs(){
-    if (this.props.form == null || this.props.form.questions == null ) {
-      return <Loader active inline='centered' />
-    } else {
     return (
       <form onSubmit={this.props.handleSubmit(this.onSubmit.bind(this))}>
-       {this.props.form.questions.map((question,i) =>
         <Field
           label="Question"
-          name={i}
+          name='content'
           component={this.renderField}
         />
-      )}
+      )
       <button type="submit" className="btn btn-primary">Submit</button>
     </form>)
-  }
   }
 
   componentDidMount() {
@@ -100,7 +96,7 @@ render() {
               </Grid.Column>
               <Grid.Column width={7}>
                 <Header as='h3'>Application Content</Header>
-                  {this.renderQuestionInputs()}
+                  <FormsNew />
                 <Menu.Item as='a'
                   onClick={this.onDeleteClick.bind(this)}
                 >

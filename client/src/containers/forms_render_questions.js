@@ -6,7 +6,6 @@ const FormsRenderQuestions = ({ form }) => {
   if (form == null || form.questions == null ) {
     return <Loader active inline='centered' />
   } else {
-    console.log(form.questions)
     return form.questions.map((question,i) => <FormGroupShow question={question} index={i} />)
    }
  }
