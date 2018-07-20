@@ -67,6 +67,7 @@ class FormsEdit extends Component {
   }
 
   renderQuestions(){
+    debugger
     if (this.props.form == null || this.props.form.questions == null ) {
       return <Loader active inline='centered' />
     } else {
@@ -75,6 +76,7 @@ class FormsEdit extends Component {
   }
 
 render() {
+
   const { handleSubmit } = this.props;
   const { id } = this.props.match.params;
 
@@ -134,7 +136,7 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 };
 
-function mapStateToProps({ forms }, ownProps) {  
+function mapStateToProps({ forms }, ownProps) {
   return { form: forms[ownProps.match.params.id] }
 }
 
