@@ -22,7 +22,7 @@
 
 import React from 'react'
 import { Field, FieldArray, reduxForm } from 'redux-form'
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Button, Checkbox, Form, Icon } from 'semantic-ui-react'
 import validate from './validate'
 
 const renderField = ({ input, label, type, meta: { touched, error } }) => (
@@ -62,58 +62,40 @@ const renderHobbies = ({ fields, meta: { error } }) => (
 )
 
 const renderMembers = ({ fields, meta: { error, submitFailed } }) => (
-  <ul>
-    <li>
+    <div>
       <Button type="button" onClick={() => fields.push({})}>
-        Add Member
+        Add Text Question
       </Button>
       {submitFailed && error && <span>{error}</span>}
-    </li>
     {fields.map((member, index) => (
-      <li key={index}>
-        <Button
+      <div>
+
+        <h4>{index + 1} <Icon name='right arrow' /> Text</h4>
+        <Field
+          name={`${member}.content`}
+          type="text"
+          component={renderField}
+        />
+
+        <Button icon
           type="button"
-          title="Remove Member"
           onClick={() => fields.remove(index)}
-        />
-        <h4>Member #{index + 1}</h4>
-        <Field
-          name={`${member}.firstName`}
-          type="text"
-          component={renderField}
-          label="First Name"
-        />
-        <Field
-          name={`${member}.lastName`}
-          type="text"
-          component={renderField}
-          label="Last Name"
-        />
-        <FieldArray name={`${member}.hobbies`} component={renderHobbies} />
-      </li>
+          >
+          <Icon name='trash' color='red' />
+        </Button>
+        </div>
     ))}
-  </ul>
+    </div>
 )
 
 const FieldArraysForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props
   return (
     <Form onSubmit={handleSubmit}>
-    <Form.Field>
-      <Field
-        name="clubName"
-        type="text"
-        component={renderField}
-        label="Club Name"
-      />
-      </Form.Field>
       <FieldArray name="members" component={renderMembers} />
       <div>
         <Button type="submit" disabled={submitting}>
           Submit
-        </Button>
-        <Button type="button" disabled={pristine || submitting} onClick={reset}>
-          Clear Values
         </Button>
       </div>
     </Form>

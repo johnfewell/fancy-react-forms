@@ -82,7 +82,7 @@ class FormsEdit extends Component {
   }
 
 render() {
-  const { handleSubmit } = this.props;
+  const { handleSubmit, form } = this.props;
   const { id } = this.props.match.params;
 
   return (
@@ -95,7 +95,7 @@ render() {
                 <VerticalSidebar />
               </Grid.Column>
               <Grid.Column width={7}>
-                <Header as='h3'>Application Content</Header>
+                <Header as='h3'>Editing Form</Header>
                   <FormsNew />
                 <Menu.Item as='a'
                   onClick={this.onDeleteClick.bind(this)}
