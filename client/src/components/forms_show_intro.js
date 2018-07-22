@@ -12,7 +12,12 @@ export default class FormsShowIntro extends Component {
     if (this.props.form == null) {
       return <Loader active inline='centered' />
     } else {
-    return <Header as='h1'>{this.props.form.name}</Header>
+    return (
+      <div>
+      <Header as='h1'>{this.props.form.name}</Header>
+      <p>{this.props.form.description}</p>
+      </div>
+    )
     }
   }
   render() {

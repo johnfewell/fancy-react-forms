@@ -37,6 +37,7 @@ class FormsIndex extends Component {
 
   renderForms(){
     return _.map(this.props.forms, form => {
+      console.log('FORM PROPS', form)
       const formUrl = `forms/${form.id}`
       const editUrl = `forms/edit/${form.id}`
       return (
@@ -44,9 +45,9 @@ class FormsIndex extends Component {
           <Card>
             <Card.Content as={Link} to={editUrl}>
               <Card.Header>{form.name}</Card.Header>
-              <Card.Meta>0 Responses</Card.Meta>
+              <Card.Meta></Card.Meta>
               <Card.Description>
-                Duis convallis varius tellus id gravida. Vestibulum pulvinar lacus hendrerit neque ullamcorper sagittis.
+              {form.description}
               </Card.Description>
             </Card.Content>
             <Card.Content extra>
