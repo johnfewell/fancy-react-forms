@@ -8,7 +8,8 @@ import { bindActionCreators } from 'redux';
 import { Field, reduxForm } from 'redux-form'
 import submit from './submit'
 import FormGroupShow from './form_group_show';
-import RemoteSubmitButton from './RemoteSubmitButton'
+import RemoteSubmitButton from './RemoteSubmitButton';
+import FormsShowIntro from './forms_show_intro';
 import '../index.css';
 
 class FormsShow extends Component {
@@ -36,6 +37,7 @@ class FormsShow extends Component {
       <div className='form-body'>
        <Container text>
         <div className='form-spacer'></div>
+        <FormsShowIntro />
         <Form size='huge'>
           <form onSubmit={this.props.handleSubmit}>
           {this.renderQuestions()}
