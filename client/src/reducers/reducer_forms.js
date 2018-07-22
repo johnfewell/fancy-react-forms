@@ -20,7 +20,7 @@ export default function(state = {}, action) {
     case 'CREATE_QUESTION':
       const newQuestion = Object.assign({}, action.payload);
       let questions = [...state[newQuestion.form_id].questions, newQuestion]
-      let newState = {...state}
+      let newState = [...state]
       newState[newQuestion.form_id].questions = newState[newQuestion.form_id].questions.concat(newQuestion)
       return newState
     case 'DELETE_FORM':

@@ -3,6 +3,7 @@ import { Loader } from 'semantic-ui-react';
 import FormGroupShow from './form_group_show';
 
 const FormsRenderQuestions = ({ form }) => {
+  console.log('FormsRenderQuestions', form)
   if (form == null || form.questions == null ) {
     return <Loader active inline='centered' />
   } else {

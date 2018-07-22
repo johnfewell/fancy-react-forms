@@ -1,8 +1,19 @@
 import React, { Component, Fragment } from 'react'
-import { Button, Dimmer, Image, Segment, Form, Divider, Icon } from 'semantic-ui-react'
+import { Dimmer, Image, Segment, Form, Divider, Icon } from 'semantic-ui-react'
 import Observer from 'react-intersection-observer'
+import { Field, reduxForm } from 'redux-form'
+import submit from './submit'
 import '../index.css';
 
+const renderField = ({ input, label, type, meta: { touched, error } }) => (
+  <div>
+    <label>{label}</label>
+    <div>
+      <input {...input} placeholder='Type your answer here...' type={type} />
+      {touched && error && <span>{error}</span>}
+    </div>
+  </div>
+)
 
 class FormGroupShow extends Component {
   state = {}
@@ -10,10 +21,10 @@ class FormGroupShow extends Component {
   handleShow = () => this.setState({ active: true })
   handleHide = () => this.setState({ active: false })
   handleChange (inView) {
-   console.log('handle change called:', inView)
    inView ? this.handleHide() : this.handleShow()
  }
   render(){
+    const { error } = this.props
     const { active } = this.state
     const arrowIcon = <Fragment><i aria-hidden="true" class="arrow right small icon"></i></Fragment>
     const questionLabel = `${this.props.index+1} -> ${this.props.question.content}`
@@ -25,7 +36,13 @@ class FormGroupShow extends Component {
           <Dimmer active={active} inverted onClickOutside={this.handleHide} />
             <Form size='huge'>
                 <Form.Group widths='equal' >
-                  <Form.Field label={questionLabel} control='input' placeholder='Type your answer here...' />
+                  <Field
+                    name={this.props.question.id}
+                    type="text"
+                    component={renderField}
+                    label={questionLabel}
+                  />
+                  {error && <strong>{error}</strong>}
                 </Form.Group>
                 <Divider hidden />
               </Form>

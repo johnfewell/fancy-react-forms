@@ -2,10 +2,13 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { matchPath } from 'react-router'
 import { connect } from 'react-redux';
-import { fetchForm, handleHide, handleShow } from '../actions';
+import { fetchForm } from '../actions';
 import { Header, Container, Form, Loader, Image, Button} from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
+import { Field, reduxForm } from 'redux-form'
+import submit from './submit'
 import FormGroupShow from './form_group_show';
+import RemoteSubmitButton from './RemoteSubmitButton'
 import '../index.css';
 
 class FormsShow extends Component {
@@ -34,8 +37,10 @@ class FormsShow extends Component {
        <Container text>
         <div className='form-spacer'></div>
         <Form size='huge'>
+          <form onSubmit={this.props.handleSubmit}>
           {this.renderQuestions()}
-            <Button positive size='huge'>Positive Button</Button>
+          </form>
+            <RemoteSubmitButton>Submit</RemoteSubmitButton>
             <div className='form-spacer'></div>
         </Form>
       </Container>
@@ -46,9 +51,7 @@ class FormsShow extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    fetchForm: fetchForm,
-    handleHide: handleHide,
-    handleShow: handleShow
+    fetchForm: fetchForm
   }, dispatch);
 };
 
@@ -58,4 +61,14 @@ function mapStateToProps({ forms }, ownProps) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormsShow);
+FormsShow = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(FormsShow);
+
+export default reduxForm({
+  form: 'remoteSubmit', // a unique identifier for this form
+  onSubmit: submit // submit function must be passed to onSubmit
+})(FormsShow)
+
+// export default connect(mapStateToProps, mapDispatchToProps)(FormsShow);

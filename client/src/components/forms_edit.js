@@ -28,7 +28,6 @@ class FormsEdit extends Component {
 
   constructor(props) {
     super(props);
-
   }
 
   renderField(field) {
@@ -47,7 +46,7 @@ class FormsEdit extends Component {
   onSubmit(values) {
     const { id } = this.props.match.params;
     values.form_id = id
-    this.props.createQuestion(values);
+    this.props.createQuestion(values)
   }
 
   onDeleteClick(){
