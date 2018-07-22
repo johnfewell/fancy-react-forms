@@ -55,6 +55,7 @@ function deleteForm(id, callback) {
 }
 
 function createForm(values) {
+  console.log('Form values for post', JSON.stringify({form: values}))
   return (dispatch) => { fetch(`/api/forms`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},

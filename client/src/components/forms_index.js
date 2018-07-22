@@ -117,6 +117,12 @@ class FormsIndex extends Component {
                   name="name"
                   component={this.renderField}
                 />
+                <Field
+                  label="Description"
+                  name="description"
+                  component={this.renderField}
+                />
+                <button type="submit" className="btn btn-primary">Submit</button>
               </form>
             </Card>
             </Grid>
