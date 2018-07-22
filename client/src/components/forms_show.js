@@ -37,7 +37,7 @@ class FormsShow extends Component {
       <div className='form-body'>
        <Container text>
         <div className='form-spacer'></div>
-        <FormsShowIntro />
+        <FormsShowIntro form={this.props.form}/>
         <Form size='huge'>
           <form onSubmit={this.props.handleSubmit}>
           {this.renderQuestions()}

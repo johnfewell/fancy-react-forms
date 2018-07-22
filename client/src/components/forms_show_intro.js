@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Grid, Header, Transition, Container } from 'semantic-ui-react'
+import { Form, Grid, Header, Transition, Container, Loader } from 'semantic-ui-react'
 
 export default class FormsShowIntro extends Component {
   state = { animation: 'fade down', duration: 500, visible: true }
@@ -8,6 +8,13 @@ export default class FormsShowIntro extends Component {
 
   handleVisibility = () => this.setState({ visible: !this.state.visible })
 
+  renderHeader(){
+    if (this.props.form == null) {
+      return <Loader active inline='centered' />
+    } else {
+    return <Header as='h1'>{this.props.form.name}</Header>
+    }
+  }
   render() {
     const { animation, duration, visible } = this.state
 
@@ -15,7 +22,7 @@ export default class FormsShowIntro extends Component {
           <Transition.Group animation={animation} duration={duration}>
             {visible && <div>
               <Container text textAlign='center'>
-                <Header as='h1'>This is some lorem!</Header>
+                {this.renderHeader()}
                 <Form.Button size='huge' content={'Start'} onClick={this.handleVisibility} />
               </Container>
             <div className='form-spacer'></div>
