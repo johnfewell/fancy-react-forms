@@ -30,6 +30,10 @@ class FormsEdit extends Component {
     super(props);
   }
 
+  static getDerivedStateFromProps(newProps, newState) {
+    return newState
+  }
+
   renderField(field) {
     return (
       <div className="form-group">
