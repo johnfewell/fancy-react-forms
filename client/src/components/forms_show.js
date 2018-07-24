@@ -43,6 +43,12 @@ class FormsShow extends Component {
     });
   }
 
+  onSubmit(values) {
+    const { id } = this.props.match.params;
+    values.form_id = id
+    console.log(values)
+  }
+
   renderQuestions(){
     if (this.props.form == null) {
       return <Loader active inline='centered' />
