@@ -3,15 +3,22 @@ import React, { Component } from 'react';
 import { matchPath } from 'react-router'
 import { connect } from 'react-redux';
 import { fetchForm } from '../actions';
-import { Header, Container, Form, Loader, Image, Button} from 'semantic-ui-react';
+import { Header, Container, Loader, Image, Button} from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
-import { Field, reduxForm } from 'redux-form'
-import submit from './submit'
+import { Form, Field, reduxForm } from 'redux-form'
+// import submit from './submit'
 import FormGroupShow from './form_group_show';
 import RemoteSubmitButton from './RemoteSubmitButton';
 import FormsShowIntro from './forms_show_intro';
-import {partsOfElementInViewport, elementInViewport, goToAnchor} from '../functions/functions.js';
+import {partsOfElementInViewport, elementInViewport } from '../functions/functions.js';
 import '../index.css';
+
+function submit(values) {
+    let answersArray = Object.keys(values).map( key => ({
+      question_id: key,
+      value: values[key]
+    }) )
+}
 
 class FormsShow extends Component {
 
@@ -24,6 +31,15 @@ class FormsShow extends Component {
     const id = match.params.id;
     this.props.fetchForm(id);
     document.addEventListener('scroll', this.handleScroll.bind(this));
+  }
+
+  onSubmit(values) {
+    const { id } = this.props.match.params;
+    let answersArray = Object.keys(values).map( key => ({
+      question_id: key,
+      value: values[key]
+    }) )
+    console.log('ANSWERS:', answersArray)
   }
 
   handleScroll(){
@@ -43,12 +59,6 @@ class FormsShow extends Component {
     });
   }
 
-  onSubmit(values) {
-    const { id } = this.props.match.params;
-    values.form_id = id
-    console.log(values)
-  }
-
   renderQuestions(){
     if (this.props.form == null) {
       return <Loader active inline='centered' />
@@ -63,13 +73,11 @@ class FormsShow extends Component {
        <Container text>
         <div className='form-spacer'></div>
         <FormsShowIntro form={this.props.form}/>
-        <Form size='huge'>
-          <form onSubmit={this.props.handleSubmit}>
+          <Form onSubmit={this.props.handleSubmit(this.onSubmit.bind(this))}>
           {this.renderQuestions()}
-          </form>
+          </Form>
             <RemoteSubmitButton>Submit</RemoteSubmitButton>
             <div className='form-spacer'></div>
-        </Form>
       </Container>
       </div>
     )
@@ -84,7 +92,6 @@ const mapDispatchToProps = (dispatch) => {
 
 function mapStateToProps({ forms }, ownProps) {
   return { form: forms[ownProps.match.params.id],
-          // active: state.dimmer.active
   }
 }
 
