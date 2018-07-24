@@ -1,3 +1,5 @@
+require 'pry'
+
 class FormResponsesController < ApplicationController
   def index
       render(
@@ -16,6 +18,7 @@ class FormResponsesController < ApplicationController
   end
 
   def create
+    binding.pry
     form_response = FormResponse.new(form_response_params)
     if form_response.save
       render json: form_response, status: 201
@@ -38,7 +41,7 @@ class FormResponsesController < ApplicationController
   private
 
   def form_response_params
-    params.require(:form_response).permit(:form_id, :answers_attributes => [:id, :content, :question_id, :_destroy])
+    params.require(:form_response).permit(:form_id, answers_attributes: [:id, :question_id, :content, :_destroy])
   end
 
 end
