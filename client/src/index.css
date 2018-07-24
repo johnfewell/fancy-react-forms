@@ -4,6 +4,7 @@
 
 .form-group-padding {
   padding-bottom: 3em !important;
+  padding-top: 3em !important;
 }
 
 .form-spacer {
@@ -23,7 +24,7 @@
 }
 
 /* Imported from other project */
-.form .question{
+ .question{
   -webkit-opacity: 0.25;
   -moz-opacity: 0.25;
   opacity: 0.25;
@@ -34,7 +35,7 @@
   transition: all .3s ease;
 }
 
-.form .question.active{
+ .question.active{
   -webkit-opacity: 1;
   -moz-opacity: 1;
   opacity: 1;

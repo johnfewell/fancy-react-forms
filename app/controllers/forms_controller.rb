@@ -2,7 +2,7 @@ class FormsController < ApplicationController
   def index
       render(
         status: 200,
-        json: Form.all
+        json: Form.all, include: ['form_responses', 'questions']
       )
   end
 

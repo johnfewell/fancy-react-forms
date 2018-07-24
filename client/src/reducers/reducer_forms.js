@@ -29,11 +29,11 @@ export default function(state = {}, action) {
       // let newState = [...state]
       // newState[newQuestion.form_id].questions = newState[newQuestion.form_id].questions.concat(newQuestion)
       return newState
-    case 'DELETE_FORM':
-      const forms = state.formsState.filter(form =>
-           form.id !== action.payload
-        )
-      return forms
+    // case 'DELETE_FORM':
+    //   const forms = state.formsState.filter(form =>
+    //        form.id !== action.payload
+    //     )
+    //   return forms
     default:
       return state;
   }

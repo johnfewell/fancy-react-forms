@@ -5,7 +5,7 @@ import { submit } from 'redux-form'
 const RemoteSubmitButton = ({ dispatch }) => (
   <button
     type="button"
-    className='ui huge button'
+    className='ui huge green button'
     onClick={() => dispatch(submit('remoteSubmit'))}
   >
     Submit

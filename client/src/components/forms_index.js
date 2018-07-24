@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
-import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import { fetchForms, createForm, deleteForm } from '../actions';
 import { Card, Header, Container, Grid, Form, Divider, Button, Icon, Menu, Dropdown, Label, Segment } from 'semantic-ui-react';
@@ -45,7 +44,8 @@ class FormsIndex extends Component {
           <Card>
             <Card.Content as={Link} to={editUrl}>
               <Card.Header>{form.name}</Card.Header>
-              <Card.Meta></Card.Meta>
+              <Card.Meta> Questions
+              </Card.Meta>
               <Card.Description>
               {form.description}
               </Card.Description>
@@ -53,7 +53,7 @@ class FormsIndex extends Component {
             <Card.Content extra>
             <Menu secondary>
                 <Menu.Item>
-                  5 Responses
+                   Responses
                 </Menu.Item>
                 <Menu.Menu position='right'>
                  <Dropdown item icon='ellipsis horizontal' simple>

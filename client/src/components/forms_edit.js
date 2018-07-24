@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { matchPath } from 'react-router'
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { confirmAlert } from 'react-confirm-alert'; // Import
 import { fetchForm, deleteForm, createQuestion } from '../actions';
 import { Header,
           Container,
@@ -61,6 +62,23 @@ class FormsEdit extends Component {
     });
   }
 
+
+  submitDelete = () => {confirmAlert({
+    title: 'Really delete?',
+    message: 'This will delete your form and all of its questions',
+    buttons: [
+      {
+        label: 'Yes',
+        onClick: () => this.onDeleteClick()
+      },
+      {
+        label: 'No',
+        onClick: () => this.props.history.push('/')
+      }
+    ]
+  })
+}
+
   componentDidMount() {
     const match = matchPath(this.props.history.location.pathname, {
       path: '/forms/edit/:id',
@@ -95,7 +113,7 @@ render() {
                     />
                   </form>
                   <Menu.Item as='a'
-                    onClick={this.onDeleteClick.bind(this)}
+                    onClick={this.submitDelete}
                   >
                   <Icon name='trash alternate' />
                   Delete

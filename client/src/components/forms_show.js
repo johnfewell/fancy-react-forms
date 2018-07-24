@@ -3,21 +3,17 @@ import React, { Component } from 'react';
 import { matchPath } from 'react-router'
 import { connect } from 'react-redux';
 import { fetchForm, submitForm } from '../actions';
-import { Header, Container, Loader, Image, Button} from 'semantic-ui-react';
+import { Header, Container, Loader, Image, Button, Grid} from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { Form, Field, reduxForm } from 'redux-form'
-// import submit from './submit'
 import FormGroupShow from './form_group_show';
 import RemoteSubmitButton from './RemoteSubmitButton';
 import FormsShowIntro from './forms_show_intro';
+
 import {partsOfElementInViewport, elementInViewport } from '../functions/functions.js';
 import '../index.css';
 
 function submit(values) {
-    let answersArray = Object.keys(values).map( key => ({
-      question_id: key,
-      value: values[key]
-    }) )
 }
 
 class FormsShow extends Component {
@@ -82,8 +78,10 @@ class FormsShow extends Component {
         <FormsShowIntro form={this.props.form}/>
           <Form onSubmit={this.props.handleSubmit(this.onSubmit.bind(this))}>
           {this.renderQuestions()}
-          </Form>
+          <Grid centered>
             <RemoteSubmitButton>Submit</RemoteSubmitButton>
+          </Grid>
+          </Form>
             <div className='form-spacer'></div>
       </Container>
       </div>
