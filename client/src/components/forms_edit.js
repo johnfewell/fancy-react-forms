@@ -14,6 +14,7 @@ import { Header,
           Icon,
           Sidebar,
           Grid,
+          Divider,
           Image,
         } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
@@ -84,7 +85,7 @@ render() {
                 <Grid.Column width={1}>
                 <VerticalSidebar />
                 </Grid.Column>
-                <Grid.Column width={7}>
+                <Grid.Column width={6}>
                   <Header as='h3'>Application Content</Header>
                   <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                     <Field
@@ -92,13 +93,6 @@ render() {
                       name="content"
                       component={this.renderField}
                     />
-                    <Field
-                      label="Question Type"
-                      name="question_type"
-                      component={this.renderField}
-                    />
-                    <button type="submit" className="btn btn-primary">Submit</button>
-
                   </form>
                   <Menu.Item as='a'
                     onClick={this.onDeleteClick.bind(this)}
@@ -106,8 +100,14 @@ render() {
                   <Icon name='trash alternate' />
                   Delete
                 </Menu.Item>
+
+                </Grid.Column>
+                <Grid.Column width={1}>
+                <Divider vertical><Icon name='caret square right' /></Divider>
+
                 </Grid.Column>
                 <Grid.Column width={8}>
+
                   <Container text>
                   <div className='scroll-bar'>
                      <Form size='huge'>

@@ -10,6 +10,7 @@ import submit from './submit'
 import FormGroupShow from './form_group_show';
 import RemoteSubmitButton from './RemoteSubmitButton';
 import FormsShowIntro from './forms_show_intro';
+import {partsOfElementInViewport, elementInViewport, goToAnchor} from '../functions/functions.js';
 import '../index.css';
 
 class FormsShow extends Component {
@@ -22,6 +23,24 @@ class FormsShow extends Component {
     })
     const id = match.params.id;
     this.props.fetchForm(id);
+    document.addEventListener('scroll', this.handleScroll.bind(this));
+  }
+
+  handleScroll(){
+    let elements = document.getElementsByClassName('question');
+    _.each(elements, (el) => {
+      if(partsOfElementInViewport(el)){
+        el.classList.add("visible");
+      }else{
+        el.classList.remove("visible");
+      }
+
+      if(elementInViewport(el)){
+        el.classList.add("active");
+      }else{
+        el.classList.remove("active");
+      }
+    });
   }
 
   renderQuestions(){

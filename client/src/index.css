@@ -11,12 +11,31 @@
 }
 
 .scroll-bar {
-  height:700px;
-  overflow: scroll;
+  height:658px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .form-body {
   background-image: url('./components/background.jpeg');
   background-color: #cccccc;
   background-attachment: fixed;
+}
+
+/* Imported from other project */
+.form .question{
+  -webkit-opacity: 0.25;
+  -moz-opacity: 0.25;
+  opacity: 0.25;
+-webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.form .question.active{
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;
 }
