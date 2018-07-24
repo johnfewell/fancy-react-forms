@@ -65,6 +65,17 @@ function createForm(values) {
   }
 }
 
+function submitForm(values) {
+  console.log('Form values for post', JSON.stringify({form_response: values}))
+  return (dispatch) => { fetch(`/api/form_responses`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({form_response: values})})
+      .then(response => response.json())
+      .then(json => dispatch({ type: 'SUBMIT_FORM_SUCCESS', payload: json }));
+  }
+}
+
 function createQuestion(values) {
   return (dispatch) => { fetch(`/api/questions`, {
       method: 'POST',
@@ -81,6 +92,7 @@ export {
   handleShow,
   handleHide,
   deleteForm,
+  submitForm,
   createForm,
   createQuestion
 }

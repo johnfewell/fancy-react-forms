@@ -18,7 +18,7 @@ class FormResponsesController < ApplicationController
   end
 
   def create
-    binding.pry
+    
     form_response = FormResponse.new(form_response_params)
     if form_response.save
       render json: form_response, status: 201

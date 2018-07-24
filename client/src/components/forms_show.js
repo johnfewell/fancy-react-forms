@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { matchPath } from 'react-router'
 import { connect } from 'react-redux';
-import { fetchForm } from '../actions';
+import { fetchForm, submitForm } from '../actions';
 import { Header, Container, Loader, Image, Button} from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { Form, Field, reduxForm } from 'redux-form'
@@ -37,9 +37,16 @@ class FormsShow extends Component {
     const { id } = this.props.match.params;
     let answersArray = Object.keys(values).map( key => ({
       question_id: key,
-      value: values[key]
+      content: values[key]
     }) )
-    console.log('ANSWERS:', answersArray)
+    let answers_attributes =  answersArray
+     let newResponse = {
+         form_id: id,
+         answers_attributes
+       }
+
+     this.props.submitForm(newResponse)
+     console.log('this is what the response is in forms_show', newResponse)
   }
 
   handleScroll(){
@@ -86,7 +93,8 @@ class FormsShow extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    fetchForm: fetchForm
+    fetchForm: fetchForm,
+    submitForm: submitForm,
   }, dispatch);
 };
 
