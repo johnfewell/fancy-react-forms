@@ -3,7 +3,6 @@ const initialState = {
 }
 
 export default function(state = initialState, action) {
-
   switch (action.type) {
     case 'TOGGLE_HIDDEN':
       return {...state, isHidden: action.toggle }

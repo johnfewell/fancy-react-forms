@@ -1,9 +1,9 @@
 
 export function elementInViewport(el) {
-  var top = el.offsetTop;
-  var left = el.offsetLeft;
-  var width = el.offsetWidth;
-  var height = el.offsetHeight;
+  let top = el.offsetTop;
+  let left = el.offsetLeft;
+  let width = el.offsetWidth;
+  let height = el.offsetHeight;
 
   while(el.offsetParent) {
     el = el.offsetParent;
@@ -20,10 +20,10 @@ export function elementInViewport(el) {
 }
 
 export function partsOfElementInViewport(el) {
-  var top = el.offsetTop;
-  var left = el.offsetLeft;
-  var width = el.offsetWidth;
-  var height = el.offsetHeight;
+  let top = el.offsetTop;
+  let left = el.offsetLeft;
+  let width = el.offsetWidth;
+  let height = el.offsetHeight;
 
   while(el.offsetParent) {
     el = el.offsetParent;
@@ -40,7 +40,7 @@ export function partsOfElementInViewport(el) {
 }
 
 export function goToAnchor(anchor) {
-  var loc = document.location.toString().split('#')[0];
+  let loc = document.location.toString().split('#')[0];
   document.location = loc + '#' + anchor;
   return false;
 }

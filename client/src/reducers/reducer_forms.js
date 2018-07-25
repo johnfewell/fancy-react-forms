@@ -12,8 +12,6 @@ export default function(state = {}, action) {
       return { ...state, error: action.payload }
     case 'RECEIVED_FORMS':
       return {formsState: action.payload}
-    case 'ADD_FORM_DIALOG':
-
     case 'CREATE_FORM':
       const newForm = Object.assign({}, action.payload);
       return { ...state, formsState: {...state.formsState, [newForm.id]: newForm }};
@@ -26,34 +24,8 @@ export default function(state = {}, action) {
           questions
         }
       }
-      // let newState = [...state]
-      // newState[newQuestion.form_id].questions = newState[newQuestion.form_id].questions.concat(newQuestion)
       return newState
-    // case 'DELETE_FORM':
-    //   const forms = state.formsState.filter(form =>
-    //        form.id !== action.payload
-    //     )
-    //   return forms
     default:
       return state;
   }
 }
-//
-// return Object.assign({}, state, {
-//    formsState: [...state.formsState.filter(form => form.id !== action.payload)],
-//  });
-//
-// var filtered = Object.filter(state.formsState, form => form.id !== action.payload);
-//
-// return state.filter(({ id }) => id !== action.payload);
-//
-//
-// const forms = state.formsState.filter(form =>
-//      form.id !== action.payload
-//   )
-// { formsState: state.formsState.filter(form =>
-//      form.id !== action.payload
-//   )}
-//https://stackoverflow.com/questions/5072136/javascript-filter-for-objects
-//https://stackoverflow.com/questions/37777525/delete-an-item-from-redux-state
-//https://learn.co/tracks/full-stack-web-development-v5/redux/using-redux-with-react/redux-delete-codealong
