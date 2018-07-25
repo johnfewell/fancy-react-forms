@@ -4,35 +4,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
-import 'react-confirm-alert/src/react-confirm-alert.css'
-import { fetchForms, createForm, deleteForm } from '../actions';
+import { fetchForms, createForm, toggleHidden } from '../actions';
 import { Card, Header, Container, Grid, Form, Divider, Button, Icon, Menu, Dropdown, Label, Segment } from 'semantic-ui-react';
 import HeaderMenu from './header_menu';
 import SecondaryMenu from './secondary_menu';
 
 class FormsIndex extends Component {
+
   componentDidMount() {
     this.props.fetchForms();
   }
-
-  handleDelete = (id) => {
-    const noop = function(){};
-    this.props.deleteForm(id, noop)
-    // confirmAlert({
-    //   title: 'Confirm delete',
-    //   message: 'This will delete your form and all of its questions',
-    //   buttons: [
-    //     {
-    //       label: 'Yes',
-    //       onClick: () => this.props.deleteForm(82, noop)
-    //     },
-    //     {
-    //       label: 'No',
-    //       onClick: () => this.props.history.push('/')
-    //     }
-    //   ]
-    // })
-  };
 
   renderForms(){
     return _.map(this.props.forms, form => {
@@ -92,9 +73,14 @@ class FormsIndex extends Component {
     this.props.createForm(values)
   }
 
+  onHandleToggle() {
+    const toggle = !this.props.ui
+    this.props.toggleHidden(toggle)
+  }
+
+
   render () {
     const { handleSubmit } = this.props;
-
     const newFormUrl = 'forms/new';
     const newFormString = 'New Form';
 
@@ -104,13 +90,16 @@ class FormsIndex extends Component {
         <Container fluid>
         <Grid columns='equal'>
           <Grid.Column width={3}>
-
+          <button onClick={this.onHandleToggle.bind(this)} >
+            Click to show modal
+          </button>
           </Grid.Column>
           <Grid.Column>
-          <SecondaryMenu firstUrl={newFormUrl} firstString={newFormString}/>
+          <SecondaryMenu firstUrl={newFormUrl} firstString={newFormString} onHandleToggle={this.onHandleToggle}/>
           <Grid.Column width={10}>
           <Grid doubling columns={5}>
               {this.renderForms()}
+              {this.props.ui &&
             <Card>
               <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <Field
@@ -125,7 +114,7 @@ class FormsIndex extends Component {
                 />
                 <button type="submit" className="btn btn-primary">Submit</button>
               </form>
-            </Card>
+            </Card>}
             </Grid>
             </Grid.Column>
           </Grid.Column>
@@ -137,14 +126,17 @@ class FormsIndex extends Component {
 }
 
 function mapStateToProps(state) {
-  return { forms: state.forms.formsState};
+  return {
+    forms: state.forms.formsState,
+    ui: state.ui.isHidden
+  };
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     fetchForms: fetchForms,
     createForm: createForm,
-    deleteForm: deleteForm
+    toggleHidden: toggleHidden
   }, dispatch);
 };
 

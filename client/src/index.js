@@ -10,6 +10,7 @@ import FormsIndex from './components/forms_index';
 import FormsEdit from './components/forms_edit';
 import FormsShow from './components/forms_show';
 import './index.css';
+import 'react-confirm-alert/src/react-confirm-alert.css'
 import './semantic/dist/semantic.min.css';
 
 const store = createStore(

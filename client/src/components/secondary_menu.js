@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Menu, Button, Header, Icon, Label, Dropdown } from 'semantic-ui-react'
+import { Menu, Button, Header, Icon, Label } from 'semantic-ui-react'
 
-const SecondaryMenu = ({firstUrl, firstString}) => (
+const SecondaryMenu = (props) => (
 <Menu secondary>
   <Menu.Item>
   <Header as='h3'>
@@ -9,12 +9,10 @@ const SecondaryMenu = ({firstUrl, firstString}) => (
   </Header>
   </Menu.Item>
 <Menu.Menu position='right'>
-  <Menu.Item href={firstUrl}>
-    <Button icon="plus" content="New Form" labelPostition="left" color="teal"/>
+  <Menu.Item>
+    <Button  icon="plus" content="New Form" labelPostition="left" color="teal"/>
   </Menu.Item>
   </Menu.Menu>
 </Menu>
 )
 export default SecondaryMenu
-
-  //

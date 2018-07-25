@@ -9,7 +9,6 @@ import { Form, Field, reduxForm } from 'redux-form'
 import FormGroupShow from './form_group_show';
 import RemoteSubmitButton from './RemoteSubmitButton';
 import FormsShowIntro from './forms_show_intro';
-
 import {partsOfElementInViewport, elementInViewport } from '../functions/functions.js';
 import '../index.css';
 
@@ -110,5 +109,3 @@ export default reduxForm({
   form: 'remoteSubmit', // a unique identifier for this form
   onSubmit: submit // submit function must be passed to onSubmit
 })(FormsShow)
-
-// export default connect(mapStateToProps, mapDispatchToProps)(FormsShow);

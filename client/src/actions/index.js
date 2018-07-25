@@ -18,7 +18,7 @@ function fetchForms () {
 }
 
 function fetchForm(id) {
-  
+
   return (dispatch) => {
     dispatch({type: 'FETCH_FORM'})
     return fetch(`/api/forms/${id}`)
@@ -34,15 +34,9 @@ function fetchForm(id) {
   }
 }
 
-function handleShow() {
+function toggleHidden(toggle) {
   return (dispatch) => {
-    dispatch({type: 'HANDLE_SHOW'})
-  }
-}
-
-function handleHide() {
-  return (dispatch) => {
-    dispatch({type: 'HANDLE_HIDE'})
+    dispatch({type: 'TOGGLE_HIDDEN', toggle})
   }
 }
 
@@ -90,8 +84,7 @@ function createQuestion(values) {
 export {
   fetchForm,
   fetchForms,
-  handleShow,
-  handleHide,
+  toggleHidden,
   deleteForm,
   submitForm,
   createForm,
