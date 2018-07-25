@@ -15,6 +15,39 @@ class FormsIndex extends Component {
     this.props.fetchForms();
   }
 
+  renderNewFormCard(){
+    return(
+    <Grid.Column>
+    <Card>
+    <Card.Content>
+      <form onSubmit={this.props.handleSubmit(this.onSubmit.bind(this))}>
+        <div className="ui card content header">New Form</div>
+          Name:
+          <Field
+            label=""
+            name="name"
+            component={this.renderField}
+            />
+          <div className="field">
+            <label>Description:</label>
+            <Field
+              label=""
+              className
+              name="description"
+              component="textarea"
+            />
+          </div>
+          <Divider/>
+        <Grid centered>
+          <Button type="submit" className="btn btn-primary">Submit</Button>
+        </Grid>
+      </form>
+      </Card.Content>
+    </Card>
+    </Grid.Column>
+
+  )}
+
   renderForms(){
     return _.map(this.props.forms, form => {
       console.log('FORM PROPS', form)
@@ -41,10 +74,7 @@ class FormsIndex extends Component {
                    <Dropdown.Menu>
                      <Dropdown.Item as={Link} to={editUrl}>Edit</Dropdown.Item>
                      <Dropdown.Item as={Link} to={formUrl}>Preview</Dropdown.Item>
-                     <Dropdown.Item>Duplicate</Dropdown.Item>
                      <Dropdown.Item>Results</Dropdown.Item>
-                     <Dropdown.Divider />
-                     <Dropdown.Item onClick={this.handleDelete}><Label color='red'>Delete</Label></Dropdown.Item>
                    </Dropdown.Menu>
                  </Dropdown>
                </Menu.Menu>
@@ -69,6 +99,19 @@ class FormsIndex extends Component {
     );
   }
 
+  // renderTextArea(field) {
+  //   return (
+  //     <div className="form-group">
+  //           <label>{field.label} </label>
+  //           <input
+  //           className="form-control"
+  //           type="textarea"
+  //           {...field.input}
+  //           />
+  //     </div>
+  //   );
+  // }
+
   onSubmit(values) {
     this.props.createForm(values)
   }
@@ -78,9 +121,8 @@ class FormsIndex extends Component {
     this.props.toggleHidden(toggle)
   }
 
-
   render () {
-    const { handleSubmit } = this.props;
+    // const { handleSubmit } = this.props;
     const newFormUrl = 'forms/new';
     const newFormString = 'New Form';
 
@@ -99,22 +141,7 @@ class FormsIndex extends Component {
           <Grid.Column width={10}>
           <Grid doubling columns={5}>
               {this.renderForms()}
-              {this.props.ui &&
-            <Card>
-              <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                <Field
-                  label="Name"
-                  name="name"
-                  component={this.renderField}
-                />
-                <Field
-                  label="Description"
-                  name="description"
-                  component={this.renderField}
-                />
-                <button type="submit" className="btn btn-primary">Submit</button>
-              </form>
-            </Card>}
+              {this.props.ui && this.renderNewFormCard()}
             </Grid>
             </Grid.Column>
           </Grid.Column>
@@ -145,11 +172,6 @@ FormsIndex = connect(
     mapDispatchToProps
 )(FormsIndex);
 
-function validate(values){
-
-}
-
 export default reduxForm({
-  validate,
   form: 'FormNewForm' // a unique name for this form
 })(FormsIndex);
