@@ -99,19 +99,6 @@ class FormsIndex extends Component {
     );
   }
 
-  // renderTextArea(field) {
-  //   return (
-  //     <div className="form-group">
-  //           <label>{field.label} </label>
-  //           <input
-  //           className="form-control"
-  //           type="textarea"
-  //           {...field.input}
-  //           />
-  //     </div>
-  //   );
-  // }
-
   onSubmit(values) {
     this.onHandleToggle()
     this.props.reset();

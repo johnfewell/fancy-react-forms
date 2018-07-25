@@ -1,4 +1,7 @@
-export default function(state = {}, action) {
+const initialState = {
+  formSubmitStatus: false
+}
+export default function(state = initialState, action) {
   switch (action.type) {
     case 'FETCH_FORMS':
       return state
@@ -23,6 +26,8 @@ export default function(state = {}, action) {
         }
       }
       return newState
+    case 'SUBMIT_FORM_SUCCESS':
+      return {...state, formSubmitStatus: action.payload}
     default:
       return state;
   }

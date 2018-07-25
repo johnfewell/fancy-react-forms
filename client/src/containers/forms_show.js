@@ -43,7 +43,7 @@ class FormsShow extends Component {
          answers_attributes
        }
      this.props.submitForm(newResponse)
-     this.setState({ open: true })
+     // this.setState({ open: true })
   }
 
   handleScroll(){
@@ -75,7 +75,7 @@ class FormsShow extends Component {
     return (
       <div className='form-body'>
        <Container text>
-       <Modal centered={false} dimmer='inverted' open={this.state.open}>
+       <Modal centered={false} dimmer='inverted' open={this.props.formSubmitStatus.formSubmitStatus}>
           <Header as='h2'><Icon size='big' color='green' name='check circle outline'/> Submssion Successful!</Header>
           <Header as='h3'>You can now close the page</Header>
        </Modal>
@@ -103,7 +103,9 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 function mapStateToProps({ forms }, ownProps) {
-  return { form: forms[ownProps.match.params.id],
+  return {
+    form: forms[ownProps.match.params.id],
+    formSubmitStatus: forms
   }
 }
 

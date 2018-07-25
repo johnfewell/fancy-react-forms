@@ -47,7 +47,6 @@ class FormsEdit extends Component {
     });
   }
 
-
   submitDelete = () => {confirmAlert({
     title: 'Really delete?',
     message: 'This will delete your form and all of its questions',
@@ -81,47 +80,44 @@ render() {
   return (
     <div>
       <HeaderMenu />
-          <Segment basic>
-            <Grid>
-              <Grid.Row>
-                <Grid.Column width={1}>
-                <VerticalSidebar submitDelete={this.submitDelete}/>
-                </Grid.Column>
-                <Grid.Column width={6}>
-                  <Header as='h3'>Type a question and hit [enter]</Header>
-                  <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                  <Form size='big'>
-                  <Form.Group widths='equal' >
-                    <Form.Field>
-                    <Field
-                      label="Question"
-                      name="content"
-                      component={this.renderField}
-                    />
-                    </Form.Field>
-                    </Form.Group>
-                    <Divider hidden />
-                  </Form>
-                  </form>
-
-                </Grid.Column>
-                <Grid.Column width={1}>
-                <Divider vertical><Icon name='caret square right' /></Divider>
-
-                </Grid.Column>
-                <Grid.Column width={8}>
-
-                  <Container text>
-                  <div className='scroll-bar'>
-                     <Form size='huge'>
-                       <FormsRenderQuestions form={this.props.form}/>
-                     </Form>
-                   </div>
-                 </Container>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Segment>
+      <Segment basic>
+        <Grid>
+          <Grid.Row>
+            <Grid.Column width={1}>
+            <VerticalSidebar submitDelete={this.submitDelete}/>
+            </Grid.Column>
+            <Grid.Column width={6}>
+              <Header as='h3'>Type a question and hit [enter]</Header>
+              <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+              <Form size='big'>
+              <Form.Group widths='equal' >
+                <Form.Field>
+                <Field
+                  label="Question"
+                  name="content"
+                  component={this.renderField}
+                />
+                </Form.Field>
+                </Form.Group>
+                <Divider hidden />
+              </Form>
+              </form>
+            </Grid.Column>
+            <Grid.Column width={1}>
+            <Divider vertical><Icon name='caret square right' /></Divider>
+            </Grid.Column>
+            <Grid.Column width={8}>
+              <Container text>
+              <div className='scroll-bar'>
+                 <Form size='huge'>
+                   <FormsRenderQuestions form={this.props.form}/>
+                 </Form>
+               </div>
+             </Container>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Segment>
     </div>
   )}
 }

@@ -16,21 +16,21 @@ const FormGroupShow = props => {
     const questionLabel = `${props.index+1} -> ${props.question.content}`
 
     return (
-      <div key={props.question.id}>
-        <div className='borderless form-group-padding question'>
-          <Form size='huge'>
-              <Form.Group widths='equal' >
-                <Form.Field>
+      <div>
+        <div className='borderless form-group-padding question' key={props.key}>
+          <div className='ui huge form'>
+              <div className='equal width fields'>
+                <div className='field'>
                 <Field
                   name={props.question.id.toString()}
                   type="text"
                   component={renderField}
                   label={questionLabel}
                 />
-                </Form.Field>
-              </Form.Group>
+                </div>
+              </div>
               <Divider hidden />
-            </Form>
+            </div>
         </div>
       </div>
     )}
