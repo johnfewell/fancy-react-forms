@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { fetchForms, createForm, toggleHidden } from '../actions';
-import { Card, Header, Container, Grid, Form, Divider, Button, Icon, Menu, Dropdown, Label, Segment } from 'semantic-ui-react';
+import { Card, Container, Grid, Divider, Button, Menu, Dropdown } from 'semantic-ui-react';
 import HeaderMenu from '../components/header_menu';
 import SecondaryMenu from '../components/secondary_menu';
 
@@ -54,7 +54,7 @@ class FormsIndex extends Component {
       const formUrl = `forms/${form.id}`
       const editUrl = `forms/edit/${form.id}`
       return (
-        <Grid.Column>
+        <Grid.Column key={form.id}>
           <Card>
             <Card.Content as={Link} to={editUrl}>
               <Card.Header>{form.name}</Card.Header>
@@ -137,7 +137,7 @@ class FormsIndex extends Component {
           <Menu secondary>
           <Menu.Menu position='right'>
           <Menu.Item>
-            <Button onClick={this.onHandleToggle.bind(this)} icon="plus" content="New Form" labelPostition="left" color="teal"/>
+            <Button onClick={this.onHandleToggle.bind(this)} icon="plus" content="New Form"  color="teal"/>
           </Menu.Item>
           </Menu.Menu>
           </Menu>

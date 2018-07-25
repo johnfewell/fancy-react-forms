@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import { matchPath } from 'react-router'
 import { connect } from 'react-redux';
 import { fetchForm, submitForm } from '../actions';
-import { Header, Container, Loader, Image, Button, Grid, Modal, Icon} from 'semantic-ui-react';
+import { Header, Container, Loader, Button, Grid, Modal, Icon} from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
-import { Form, Field, reduxForm } from 'redux-form'
+import { Form, reduxForm } from 'redux-form'
 import FormGroupShow from '../components/form_group_show';
 import RemoteSubmitButton from '../components/RemoteSubmitButton';
 import FormsShowIntro from '../components/forms_show_intro';
@@ -72,11 +72,10 @@ class FormsShow extends Component {
   }
 
   render(){
-    const { open, dimmer } = this.state
     return (
       <div className='form-body'>
        <Container text>
-       <Modal centered='false' dimmer='inverted' open={this.state.open}>
+       <Modal centered={false} dimmer='inverted' open={this.state.open}>
           <Header as='h2'><Icon size='big' color='green' name='check circle outline'/> Submssion Successful!</Header>
           <Header as='h3'>You can now close the page</Header>
        </Modal>

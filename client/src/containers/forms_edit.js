@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
 import { matchPath } from 'react-router'
 import { connect } from 'react-redux';
@@ -8,28 +7,18 @@ import { fetchForm, deleteForm, createQuestion } from '../actions';
 import { Header,
           Container,
           Form,
-          Loader,
-          Button,
           Segment,
-          Menu,
           Icon,
-          Sidebar,
           Grid,
           Divider,
-          Image,
         } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
-import FormGroupShow from '../components/form_group_show';
 import VerticalSidebar from '../components/vertical_sidebar';
 import HeaderMenu from '../components/header_menu';
 import FormsRenderQuestions from '../components/forms_render_questions';
 import '../index.css';
 
 class FormsEdit extends Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   renderField(field) {
     return (
@@ -88,7 +77,6 @@ class FormsEdit extends Component {
 
 render() {
   const { handleSubmit } = this.props;
-  const { id } = this.props.match.params;
 
   return (
     <div>

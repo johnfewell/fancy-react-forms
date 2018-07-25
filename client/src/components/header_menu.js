@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Button, Header, Icon, Label, Dropdown } from 'semantic-ui-react'
+import { Menu, Icon, Label, Dropdown } from 'semantic-ui-react'
 
 const HeaderMenu = () => (
   <Menu pointing secondary attached='top'>

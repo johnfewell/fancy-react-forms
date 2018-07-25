@@ -22,7 +22,7 @@ const FormGroupShow = props => {
               <Form.Group widths='equal' >
                 <Form.Field>
                 <Field
-                  name={props.question.id}
+                  name={props.question.id.toString()}
                   type="text"
                   component={renderField}
                   label={questionLabel}

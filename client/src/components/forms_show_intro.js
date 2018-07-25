@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Grid, Header, Transition, Container, Loader } from 'semantic-ui-react'
+import { Form, Header, Transition, Container, Loader } from 'semantic-ui-react'
 
 export default class FormsShowIntro extends Component {
   state = { animation: 'fade down', duration: 500, visible: true }
