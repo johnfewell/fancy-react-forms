@@ -101,7 +101,7 @@ render() {
             <Grid>
               <Grid.Row>
                 <Grid.Column width={1}>
-                <VerticalSidebar />
+                <VerticalSidebar submitDelete={this.submitDelete}/>
                 </Grid.Column>
                 <Grid.Column width={6}>
                   <Header as='h3'>Application Content</Header>
@@ -112,12 +112,6 @@ render() {
                       component={this.renderField}
                     />
                   </form>
-                  <Menu.Item as='a'
-                    onClick={this.submitDelete}
-                  >
-                  <Icon name='trash alternate' />
-                  Delete
-                </Menu.Item>
 
                 </Grid.Column>
                 <Grid.Column width={1}>

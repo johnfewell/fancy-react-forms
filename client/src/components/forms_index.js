@@ -113,7 +113,9 @@ class FormsIndex extends Component {
   // }
 
   onSubmit(values) {
+    this.onHandleToggle()
     this.props.createForm(values)
+
   }
 
   onHandleToggle() {
