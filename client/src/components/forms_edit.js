@@ -32,10 +32,6 @@ class FormsEdit extends Component {
     super(props);
   }
 
-  static getDerivedStateFromProps(newProps, newState) {
-    return newState
-  }
-
   renderField(field) {
     return (
       <div className="form-group">
@@ -53,6 +49,7 @@ class FormsEdit extends Component {
     const { id } = this.props.match.params;
     values.form_id = id
     this.props.createQuestion(values)
+    this.props.reset();
   }
 
   onDeleteClick(){
@@ -75,9 +72,9 @@ class FormsEdit extends Component {
         label: 'No',
         onClick: () => this.props.history.push('/')
       }
-    ]
-  })
-}
+      ]
+    })
+  }
 
   componentDidMount() {
     const match = matchPath(this.props.history.location.pathname, {
@@ -104,13 +101,20 @@ render() {
                 <VerticalSidebar submitDelete={this.submitDelete}/>
                 </Grid.Column>
                 <Grid.Column width={6}>
-                  <Header as='h3'>Application Content</Header>
+                  <Header as='h3'>Type a question and hit [enter]</Header>
                   <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                  <Form size='big'>
+                  <Form.Group widths='equal' >
+                    <Form.Field>
                     <Field
                       label="Question"
                       name="content"
                       component={this.renderField}
                     />
+                    </Form.Field>
+                    </Form.Group>
+                    <Divider hidden />
+                  </Form>
                   </form>
 
                 </Grid.Column>
