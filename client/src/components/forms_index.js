@@ -132,9 +132,13 @@ class FormsIndex extends Component {
         <Container fluid>
         <Grid columns='equal'>
           <Grid.Column width={3}>
-          <button onClick={this.onHandleToggle.bind(this)} >
-            Click to show modal
-          </button>
+          <Menu secondary>
+          <Menu.Menu position='right'>
+          <Menu.Item>
+            <Button onClick={this.onHandleToggle.bind(this)} icon="plus" content="New Form" labelPostition="left" color="teal"/>
+          </Menu.Item>
+          </Menu.Menu>
+          </Menu>
           </Grid.Column>
           <Grid.Column>
           <SecondaryMenu firstUrl={newFormUrl} firstString={newFormString} onHandleToggle={this.onHandleToggle}/>
