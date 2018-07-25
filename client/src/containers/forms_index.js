@@ -6,8 +6,8 @@ import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { fetchForms, createForm, toggleHidden } from '../actions';
 import { Card, Header, Container, Grid, Form, Divider, Button, Icon, Menu, Dropdown, Label, Segment } from 'semantic-ui-react';
-import HeaderMenu from './header_menu';
-import SecondaryMenu from './secondary_menu';
+import HeaderMenu from '../components/header_menu';
+import SecondaryMenu from '../components/secondary_menu';
 
 class FormsIndex extends Component {
 

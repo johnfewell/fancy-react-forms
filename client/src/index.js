@@ -6,9 +6,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import thunk from 'redux-thunk'
 
 import rootReducer from './reducers';
-import FormsIndex from './components/forms_index';
-import FormsEdit from './components/forms_edit';
-import FormsShow from './components/forms_show';
+import FormsIndex from './containers/forms_index';
+import FormsEdit from './containers/forms_edit';
+import FormsShow from './containers/forms_show';
 import './index.css';
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import './semantic/dist/semantic.min.css';

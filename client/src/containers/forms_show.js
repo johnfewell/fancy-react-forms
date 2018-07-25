@@ -6,9 +6,9 @@ import { fetchForm, submitForm } from '../actions';
 import { Header, Container, Loader, Image, Button, Grid, Modal, Icon} from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { Form, Field, reduxForm } from 'redux-form'
-import FormGroupShow from './form_group_show';
-import RemoteSubmitButton from './RemoteSubmitButton';
-import FormsShowIntro from './forms_show_intro';
+import FormGroupShow from '../components/form_group_show';
+import RemoteSubmitButton from '../components/RemoteSubmitButton';
+import FormsShowIntro from '../components/forms_show_intro';
 import {partsOfElementInViewport, elementInViewport } from '../functions/functions.js';
 import '../index.css';
 

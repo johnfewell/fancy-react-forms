@@ -19,11 +19,10 @@ import { Header,
           Image,
         } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
-import FormGroupShow from './form_group_show';
-import QuestionText from './question_text';
-import VerticalSidebar from './vertical_sidebar';
-import HeaderMenu from './header_menu';
-import FormsRenderQuestions from './forms_render_questions';
+import FormGroupShow from '../components/form_group_show';
+import VerticalSidebar from '../components/vertical_sidebar';
+import HeaderMenu from '../components/header_menu';
+import FormsRenderQuestions from '../components/forms_render_questions';
 import '../index.css';
 
 class FormsEdit extends Component {
