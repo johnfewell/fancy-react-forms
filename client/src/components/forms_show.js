@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { matchPath } from 'react-router'
 import { connect } from 'react-redux';
 import { fetchForm, submitForm } from '../actions';
-import { Header, Container, Loader, Image, Button, Grid} from 'semantic-ui-react';
+import { Header, Container, Loader, Image, Button, Grid, Modal, Icon} from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { Form, Field, reduxForm } from 'redux-form'
 import FormGroupShow from './form_group_show';
@@ -16,6 +16,9 @@ function submit(values) {
 }
 
 class FormsShow extends Component {
+  state = { open: false }
+
+  show = () => this.setState({ open: true })
 
   componentDidMount() {
     const match = matchPath(this.props.history.location.pathname, {
@@ -39,9 +42,8 @@ class FormsShow extends Component {
          form_id: id,
          answers_attributes
        }
-
      this.props.submitForm(newResponse)
-     console.log('this is what the response is in forms_show', newResponse)
+     this.setState({ open: true })
   }
 
   handleScroll(){
@@ -70,15 +72,21 @@ class FormsShow extends Component {
   }
 
   render(){
+    const { open, dimmer } = this.state
     return (
       <div className='form-body'>
        <Container text>
+       <Modal centered='false' dimmer='inverted' open={this.state.open}>
+          <Header as='h2'><Icon size='big' color='green' name='check circle outline'/> Submssion Successful!</Header>
+          <Header as='h3'>You can now close the page</Header>
+       </Modal>
         <div className='form-spacer'></div>
         <FormsShowIntro form={this.props.form}/>
           <Form onSubmit={this.props.handleSubmit(this.onSubmit.bind(this))}>
           {this.renderQuestions()}
           <Grid centered>
             <RemoteSubmitButton>Submit</RemoteSubmitButton>
+            <Button onClick={this.show}>Blurring</Button>
           </Grid>
           </Form>
             <div className='form-spacer'></div>
