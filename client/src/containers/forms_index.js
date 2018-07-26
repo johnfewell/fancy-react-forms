@@ -57,6 +57,7 @@ class FormsIndex extends Component {
       console.log('FORM PROPS', form)
       const formUrl = `forms/${form.id}`
       const editUrl = `forms/edit/${form.id}`
+      const responsesUrl = `forms/${form.id}/responses`
       return (
         <Grid.Column key={form.id}>
           <Card>
@@ -71,14 +72,15 @@ class FormsIndex extends Component {
             <Card.Content extra>
             <Menu secondary>
                 <Menu.Item>
-                   Responses
+
+                  {'form_responses' in form ? form.form_responses.length : 0} Responses
                 </Menu.Item>
                 <Menu.Menu position='right'>
                  <Dropdown item icon='ellipsis horizontal' simple>
                    <Dropdown.Menu>
                      <Dropdown.Item as={Link} to={editUrl}>Edit</Dropdown.Item>
                      <Dropdown.Item as={Link} to={formUrl}>Preview</Dropdown.Item>
-                     <Dropdown.Item>Results</Dropdown.Item>
+                     <Dropdown.Item as={Link} to={responsesUrl}>Results</Dropdown.Item>
                    </Dropdown.Menu>
                  </Dropdown>
                </Menu.Menu>

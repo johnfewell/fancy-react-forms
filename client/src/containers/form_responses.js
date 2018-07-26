@@ -31,32 +31,23 @@ class FormResponses extends Component {
 
   renderQuestionsAndAnswers(){
     const { responses } = this.props.response;
-    console.log(responses)
     const result = Object.keys(responses).map((item, index) => {
-      console.log('in loop', item, index)
-      console.log('item arr', responses[item]);
       return (
-        <div key={index}>
-          <h3>{item}</h3>
-          {responses[item].map((answer, i) => {
-            return <p key={i}>{answer}</p>
-          })}
-        </div>
+        <List as='ol' key={index}>
+          <List.Item as='li'>
+            {item}
+            <List.Item as='ol'>
+              {responses[item].map((answer, i) => {
+                return <List.Item as='li' value='-' key={i}>{answer}</List.Item>
+              })}
+           </List.Item>
+          </List.Item>
+        </List>
       )
     })
-
-    console.log('result', result)
     return result
-      // responses.map(function (nested) {
-      //  return nested.map(function (element) {
-      //      return (
-      //        <List.Item as='li' value='*'>
-      //        {element}
-      //        </List.Item>
-      //      )
-      //  });
-      // });
   }
+
 
   render() {
     const { response } = this.props;
@@ -69,6 +60,7 @@ class FormResponses extends Component {
         <HeaderMenu />
           <Container text>
             <Header as='h2'>{response.name}</Header>
+            <Header as='h4'>Questions and Responses</Header>
             {this.renderQuestionsAndAnswers()}
           </Container>
       </div>
