@@ -31,6 +31,23 @@ function fetchForm(id) {
   }
 }
 
+function fetchResponses(id) {
+
+  return (dispatch) => {
+    dispatch({type: 'FETCH_FORM'})
+    return fetch(`/api/forms/${id}/responses`)
+      .then(response => {
+        response.json()
+        .then(json => {
+          dispatch({type: 'RECEIVED_RESPONSES', payload: json})
+        })
+      })
+      .catch((err) => {
+        dispatch({type: 'FETCH_FORM_ERROR', payload: err})
+      })
+  }
+}
+
 function toggleHidden(toggle) {
   return (dispatch) => {
     dispatch({type: 'TOGGLE_HIDDEN', toggle})
@@ -84,5 +101,6 @@ export {
   deleteForm,
   submitForm,
   createForm,
-  createQuestion
+  createQuestion,
+  fetchResponses
 }

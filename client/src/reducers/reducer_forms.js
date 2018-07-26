@@ -1,6 +1,11 @@
 const initialState = {
-  formSubmitStatus: false
+  formSubmitStatus: false,
+  responsesState: {
+    name: '',
+    responses: {}
+  }
 }
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case 'FETCH_FORMS':
@@ -13,6 +18,8 @@ export default function(state = initialState, action) {
       return { ...state, error: action.payload }
     case 'RECEIVED_FORMS':
       return {formsState: action.payload}
+    case 'RECEIVED_RESPONSES':
+      return {...state, responsesState: action.payload}
     case 'CREATE_FORM':
       const newForm = Object.assign({}, action.payload);
       return { ...state, formsState: {...state.formsState, [newForm.id]: newForm }};
