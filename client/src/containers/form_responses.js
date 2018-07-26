@@ -32,6 +32,21 @@ class FormResponses extends Component {
   renderQuestionsAndAnswers(){
     const { responses } = this.props.response;
     console.log(responses)
+    const result = Object.keys(responses).map((item, index) => {
+      console.log('in loop', item, index)
+      console.log('item arr', responses[item]);
+      return (
+        <div key={index}>
+          <h3>{item}</h3>
+          {responses[item].map((answer, i) => {
+            return <p key={i}>{answer}</p>
+          })}
+        </div>
+      )
+    })
+
+    console.log('result', result)
+    return result
       // responses.map(function (nested) {
       //  return nested.map(function (element) {
       //      return (

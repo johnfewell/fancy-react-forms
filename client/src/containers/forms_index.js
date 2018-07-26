@@ -5,12 +5,15 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { fetchForms, createForm, toggleHidden } from '../actions';
-import { Card, Container, Grid, Divider, Button, Menu, Dropdown } from 'semantic-ui-react';
+import { Card, Container, Grid, Divider, Button, Menu, Dropdown, Loader } from 'semantic-ui-react';
 import HeaderMenu from '../components/header_menu';
 import SecondaryMenu from '../components/secondary_menu';
 
 class FormsIndex extends Component {
-
+  constructor(props) {
+    super(props)
+    this.onHandleToggle = this.onHandleToggle.bind(this)
+  }
   componentDidMount() {
     this.props.fetchForms();
   }
@@ -49,6 +52,7 @@ class FormsIndex extends Component {
   )}
 
   renderForms(){
+    console.log('checking props', this.props.forms)
     return _.map(this.props.forms, form => {
       console.log('FORM PROPS', form)
       const formUrl = `forms/${form.id}`
@@ -58,7 +62,7 @@ class FormsIndex extends Component {
           <Card>
             <Card.Content as={Link} to={editUrl}>
               <Card.Header>{form.name}</Card.Header>
-              <Card.Meta> Questions
+              <Card.Meta> {'questions' in form ? form.questions.length : 0} Questions
               </Card.Meta>
               <Card.Description>
               {form.description}
@@ -105,6 +109,8 @@ class FormsIndex extends Component {
     this.props.createForm(values)
   }
 
+  //onHandleToggle = () => {}
+
   onHandleToggle() {
     const toggle = !this.props.ui
     this.props.toggleHidden(toggle)
@@ -115,6 +121,9 @@ class FormsIndex extends Component {
     const newFormUrl = 'forms/new';
     const newFormString = 'New Form';
 
+    if (!this.props.forms) {
+      return <Loader />;
+    }
     return (
         <div>
         <HeaderMenu firstUrl={newFormUrl} firstString={newFormString}/>
@@ -124,13 +133,13 @@ class FormsIndex extends Component {
           <Menu secondary>
           <Menu.Menu position='right'>
           <Menu.Item>
-            <Button onClick={this.onHandleToggle.bind(this)} icon="plus" content="New Form"  color="teal"/>
+            <Button onClick={this.onHandleToggle} icon="plus" content="New Form"  color="teal"/>
           </Menu.Item>
           </Menu.Menu>
           </Menu>
           </Grid.Column>
           <Grid.Column>
-          <SecondaryMenu firstUrl={newFormUrl} firstString={newFormString} onHandleToggle={this.onHandleToggle}/>
+          <SecondaryMenu firstUrl={newFormUrl} firstString={newFormString}/>
           <Grid.Column width={10}>
           <Grid doubling columns={5}>
               {this.renderForms()}
