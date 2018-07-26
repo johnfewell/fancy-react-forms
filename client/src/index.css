@@ -13,6 +13,7 @@
 
 .scroll-bar {
   height:658px;
+  /* height:80vh; */
   overflow-y: scroll;
   overflow-x: hidden;
 }

@@ -16,7 +16,6 @@ import { bindActionCreators } from 'redux';
 import VerticalSidebar from '../components/vertical_sidebar';
 import HeaderMenu from '../components/header_menu';
 import FormsRenderQuestions from '../components/forms_render_questions';
-import '../index.css';
 
 class FormsEdit extends Component {
 
@@ -107,13 +106,14 @@ render() {
             <Divider vertical><Icon name='caret square right' /></Divider>
             </Grid.Column>
             <Grid.Column width={8}>
-              <Container text>
+
               <div className='scroll-bar'>
+              <Container text>
                  <Form size='huge'>
                    <FormsRenderQuestions form={this.props.form}/>
                  </Form>
+                 </Container>
                </div>
-             </Container>
             </Grid.Column>
           </Grid.Row>
         </Grid>

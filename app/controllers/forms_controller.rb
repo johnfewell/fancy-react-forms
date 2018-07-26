@@ -15,6 +15,26 @@ class FormsController < ApplicationController
       #   )
   end
 
+  def responses
+    keys = []
+    values = []
+    form = Form.find(params[:id])
+    form.form_responses.each do |fe|
+      fe.answers.each do |a|
+        if !a.content.nil?
+          values << a.content
+          keys << a.question.content
+        end
+      end
+    end
+    pairs = keys.zip(values)
+    questions_answers_hash = pairs.group_by(&:first)
+    questions_answers_hash.keys.each {
+      |k| questions_answers_hash[k] = questions_answers_hash[k].map(&:last) }
+    responses = FormResponse.where(form_id: params[:id])
+    render json: { name: form.name, responses: questions_answers_hash }
+  end
+
   def create
     form = Form.new(form_params)
     if form.save
