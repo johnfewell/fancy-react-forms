@@ -72,10 +72,8 @@ class FormsEdit extends Component {
     this.props.fetchForm(id);
   }
 
-
 render() {
   const { handleSubmit } = this.props;
-
   return (
     <div>
       <HeaderMenu />

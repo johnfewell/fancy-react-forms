@@ -52,9 +52,7 @@ class FormsIndex extends Component {
   )}
 
   renderForms(){
-    console.log('checking props', this.props.forms)
     return _.map(this.props.forms, form => {
-      console.log('FORM PROPS', form)
       const formUrl = `forms/${form.id}`
       const editUrl = `forms/edit/${form.id}`
       const responsesUrl = `forms/${form.id}/responses`
