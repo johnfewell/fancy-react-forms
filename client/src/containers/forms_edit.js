@@ -139,11 +139,6 @@ FormsEdit = connect(
     mapDispatchToProps
 )(FormsEdit);
 
-function validate(values){
-
-}
-
 export default reduxForm({
-  validate,
   form: 'NewQuestion' // a unique name for this form
 })(FormsEdit);

@@ -24,7 +24,7 @@
 }
 
 /* Imported from other project */
- .question{
+ .question.inactive{
   -webkit-opacity: 0.25;
   -moz-opacity: 0.25;
   opacity: 0.25;
@@ -35,7 +35,7 @@
   transition: all .3s ease;
 }
 
- .question.active{
+ .question{
   -webkit-opacity: 1;
   -moz-opacity: 1;
   opacity: 1;

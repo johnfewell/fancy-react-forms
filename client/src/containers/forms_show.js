@@ -16,9 +16,6 @@ function submit(values) {
 }
 
 class FormsShow extends Component {
-  state = { open: false }
-
-  show = () => this.setState({ open: true })
 
   componentDidMount() {
     const match = matchPath(this.props.history.location.pathname, {
@@ -43,7 +40,6 @@ class FormsShow extends Component {
          answers_attributes
        }
      this.props.submitForm(newResponse)
-     // this.setState({ open: true })
   }
 
   handleScroll(){
@@ -56,9 +52,9 @@ class FormsShow extends Component {
       }
 
       if(elementInViewport(el)){
-        el.classList.add("active");
+        el.classList.remove("inactive");
       }else{
-        el.classList.remove("active");
+        el.classList.add("inactive");
       }
     });
   }
@@ -85,7 +81,6 @@ class FormsShow extends Component {
           {this.renderQuestions()}
           <Grid centered>
             <RemoteSubmitButton>Submit</RemoteSubmitButton>
-            <Button onClick={this.show}>Blurring</Button>
           </Grid>
           </Form>
             <div className='form-spacer'></div>
