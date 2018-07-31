@@ -35,6 +35,15 @@ class FormsController < ApplicationController
     render json: { name: form.name, responses: questions_answers_hash }
   end
 
+  def update
+    form = Form.find(params[:id])
+    if form.update(form_params)
+      render json: form, status: 201
+    else
+      render json: { message: "There was an error saving your form."}
+    end
+  end
+
   def create
     form = Form.new(form_params)
     if form.save
@@ -58,7 +67,7 @@ class FormsController < ApplicationController
   private
 
   def form_params
-    params.require(:form).permit(:name, :description, :questions_attributes => [:id, :content, :question_type, :_destroy])
+    params.require(:form).permit(:name, :like, :description, :questions_attributes => [:id, :content, :question_type, :_destroy])
   end
 
 end
