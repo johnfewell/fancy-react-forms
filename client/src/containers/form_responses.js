@@ -1,17 +1,9 @@
-import _ from 'lodash';
-
 import React, { Component } from 'react';
 import { matchPath } from 'react-router'
 import { connect } from 'react-redux';
 import { fetchResponses } from '../actions';
 import { Header,
           Container,
-          Form,
-          Segment,
-          Loader,
-          Icon,
-          Grid,
-          Divider,
           List
         } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';

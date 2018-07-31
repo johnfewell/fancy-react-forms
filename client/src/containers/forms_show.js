@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { matchPath } from 'react-router'
 import { connect } from 'react-redux';
 import { fetchForm, submitForm } from '../actions';
-import { Header, Container, Loader, Button, Grid, Modal, Icon} from 'semantic-ui-react';
+import { Header, Container, Loader, Grid, Modal, Icon} from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { Form, reduxForm } from 'redux-form'
 import FormGroupShow from '../components/form_group_show';

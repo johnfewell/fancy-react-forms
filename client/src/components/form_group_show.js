@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Divider } from 'semantic-ui-react'
+import { Divider } from 'semantic-ui-react'
 import { Field, reduxForm } from 'redux-form'
 
 const FormGroupShow = props => {

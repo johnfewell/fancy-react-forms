@@ -1,17 +1,13 @@
-// <button onClick={this.handleUpVote}>Upvote</button>
-// {this.state.votes} -
-
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Icon, Label, Form, Divider, Grid, Menu, Card, Dropdown } from 'semantic-ui-react'
-import { Field, reduxForm } from 'redux-form'
+import { Button, Icon, Label, Grid, Menu, Card, Dropdown } from 'semantic-ui-react'
 
 class FormCard extends Component {
   state = {like: this.props.form.like}
 
-  handleUpVote = () => {
-    this.addLike(this.props.form.like+1)
-    this.setState({ like: this.state.like+1})
+  handleLike = () => {
+    console.log('before add like', this.state.like)
+    this.addLike(this.state.like+1)
   }
 
   addLike(value) {
@@ -20,12 +16,15 @@ class FormCard extends Component {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({like: value})})
         .then(response => response.json())
-        .then(this.setState({ like: this.state.like+1}))
+        .then(json => {
+          this.setState({ like: json.like})
+          console.log('after put add like', this.state.like)
+        })
     }
 
   render () {
     return (
-      <Grid.Column key={this.props.form.id}>
+      <Grid.Column>
         <Card>
           <Card.Content as={Link} to={`forms/edit/${this.props.form.id}`}>
             <Card.Header>{this.props.form.name}</Card.Header>
@@ -52,13 +51,13 @@ class FormCard extends Component {
            </Menu>
            <Menu>
 
-             <Button as='div' labelPosition='right' onClick={this.handleUpVote}>
+             <Button as='div' labelPosition='right' onClick={this.handleLike}>
                <Button icon>
                  <Icon name='heart' />
                  Like
                </Button>
                <Label as='a' basic pointing='left'>
-                  {'like' in this.state ? this.state.like : 0 }
+                  {'like' in this.state ? this.state.like : "0" }
                 </Label>
              </Button>
           </Menu>
