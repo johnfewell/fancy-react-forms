@@ -7,9 +7,21 @@ import { Button, Icon, Label, Form, Divider, Grid, Menu, Card, Dropdown } from '
 import { Field, reduxForm } from 'redux-form'
 
 class FormCard extends Component {
-  state = {votes: 0}
+  state = {like: this.props.form.like}
 
-  handleUpVote = () => {this.setState({ votes: this.state.votes+1 })}
+  handleUpVote = () => {
+    this.addLike(this.props.form.like+1)
+    this.setState({ like: this.state.like+1})
+  }
+
+  addLike(value) {
+    fetch(`/api/forms/${this.props.form.id}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({like: value})})
+        .then(response => response.json())
+        .then(this.setState({ like: this.state.like+1}))
+    }
 
   render () {
     return (
@@ -46,8 +58,8 @@ class FormCard extends Component {
                  Like
                </Button>
                <Label as='a' basic pointing='left'>
-                 {this.state.votes}
-               </Label>
+                  {'like' in this.state ? this.state.like : 0 }
+                </Label>
              </Button>
           </Menu>
           </Card.Content>
