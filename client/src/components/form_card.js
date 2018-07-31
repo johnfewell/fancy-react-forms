@@ -57,7 +57,7 @@ class FormCard extends Component {
                  Like
                </Button>
                <Label as='a' basic pointing='left'>
-                  {'like' in this.state ? this.state.like : "0" }
+                  {this.state.like > 0 ? this.state.like : 0 }
                 </Label>
              </Button>
           </Menu>
