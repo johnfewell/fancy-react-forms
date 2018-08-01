@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { fetchForms, createForm, toggleHidden } from '../actions';
-import { Card, Container, Grid, Divider, Button, Menu, Loader } from 'semantic-ui-react';
+import { Card, Container, Grid, Divider, Button, Menu, Loader, Form } from 'semantic-ui-react';
 import HeaderMenu from '../components/header_menu';
 import SecondaryMenu from '../components/secondary_menu';
 import FormCard from '../components/form_card';
@@ -28,14 +28,18 @@ class FormsIndex extends Component {
     <Grid.Column>
     <Card>
     <Card.Content>
+      <Card.Header>New Form</Card.Header>
       <form onSubmit={this.props.handleSubmit(this.onSubmit.bind(this))}>
-        <div className="ui card content header">New Form</div>
-          Name:
+        <Form size='large'>
+        <Form.Group>
+        <Form.Field width={16}>
           <Field
-            label=""
+            label="Name:"
             name="name"
             component={this.renderField}
             />
+            </Form.Field>
+            <Form.Field width={16}>
           <div className="field">
             <label>Description:</label>
             <Field
@@ -45,10 +49,13 @@ class FormsIndex extends Component {
               component="textarea"
             />
           </div>
+          </Form.Field>
+          </Form.Group>
           <Divider/>
         <Grid centered>
           <Button type="submit" className="btn btn-primary">Submit</Button>
         </Grid>
+        </Form>
       </form>
       </Card.Content>
     </Card>

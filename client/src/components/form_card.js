@@ -49,8 +49,7 @@ class FormCard extends Component {
                </Dropdown>
              </Menu.Menu>
            </Menu>
-           <Menu>
-
+           <Menu secondary>
              <Button as='div' labelPosition='right' onClick={this.handleLike}>
                <Button icon>
                  <Icon name='heart' />
