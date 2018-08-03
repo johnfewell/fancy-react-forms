@@ -11,8 +11,6 @@ import FormCard from '../components/form_card';
 
 class FormsIndex extends Component {
 
-  state = {votes: 0}
-
   handleUpVote = () => {this.setState({ votes: this.state.votes+1 })}
 
   constructor(props) {
@@ -32,14 +30,14 @@ class FormsIndex extends Component {
       <form onSubmit={this.props.handleSubmit(this.onSubmit.bind(this))}>
         <Form size='large'>
         <Form.Group>
-        <Form.Field width={16}>
+        <Form.Field >
           <Field
             label="Name:"
             name="name"
             component={this.renderField}
             />
             </Form.Field>
-            <Form.Field width={16}>
+            <Form.Field>
           <div className="field">
             <label>Description:</label>
             <Field
@@ -63,7 +61,10 @@ class FormsIndex extends Component {
   )}
 
   renderForms(){
-    return _.map(this.props.forms, form => {
+    let sortedForms = [...this.props.forms].sort(function (a, b) {
+      return b.like - a.like;
+    });
+    return _.map(sortedForms, form => {
       return <FormCard form={form} key={form.id}/>
     });
   }
