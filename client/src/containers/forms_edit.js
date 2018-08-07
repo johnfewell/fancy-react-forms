@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { matchPath } from 'react-router'
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { confirmAlert } from 'react-confirm-alert'; // Import
 import { fetchForm, deleteForm, createQuestion } from '../actions';
 import { Header,
           Container,
@@ -11,6 +10,8 @@ import { Header,
           Icon,
           Grid,
           Divider,
+          Button,
+          Confirm
         } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import VerticalSidebar from '../components/vertical_sidebar';
@@ -18,6 +19,11 @@ import HeaderMenu from '../components/header_menu';
 import FormsRenderQuestions from '../components/forms_render_questions';
 
 class FormsEdit extends Component {
+
+  state = { open: false }
+
+  open = () => this.setState({ open: true })
+  close = () => this.setState({ open: false })
 
   renderField(field) {
     return (
@@ -39,27 +45,11 @@ class FormsEdit extends Component {
     this.props.reset();
   }
 
-  onDeleteClick(){
+  onDeleteClick = () => {
     const { id } = this.props.match.params;
     this.props.deleteForm(id, () => {
       this.props.history.push('/');
     });
-  }
-
-  submitDelete = () => {confirmAlert({
-    title: 'Really delete?',
-    message: 'This will delete your form and all of its questions',
-    buttons: [
-      {
-        label: 'Yes',
-        onClick: () => this.onDeleteClick()
-      },
-      {
-        label: 'No',
-        onClick: () => this.props.history.push('/')
-      }
-      ]
-    })
   }
 
   componentDidMount() {
@@ -78,10 +68,15 @@ render() {
     <div>
       <HeaderMenu />
       <Segment basic>
+        <div>
+          <Confirm open={this.state.open}
+          content='Are you sure? This will delete your form and all of its questions.'
+          onCancel={this.close} onConfirm={this.onDeleteClick} />
+        </div>
         <Grid>
           <Grid.Row>
             <Grid.Column width={1}>
-            <VerticalSidebar submitDelete={this.submitDelete}/>
+            <VerticalSidebar submitDelete={this.open}/>
             </Grid.Column>
             <Grid.Column width={6}>
               <Header as='h3'>Type a question and hit [enter]</Header>
