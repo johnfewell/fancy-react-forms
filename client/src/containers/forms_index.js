@@ -29,43 +29,41 @@ class FormsIndex extends Component {
 
   renderNewFormCard() {
     return (
-      <Grid.Column>
-        <Card>
-          <Card.Content>
-            <Card.Header>New Form</Card.Header>
-            <form onSubmit={this.props.handleSubmit(this.onSubmit.bind(this))}>
-              <Form size="large">
-                <Form.Group>
-                  <Form.Field>
+      <Card>
+        <Card.Content>
+          <Card.Header>New Form</Card.Header>
+          <form onSubmit={this.props.handleSubmit(this.onSubmit.bind(this))}>
+            <Form size="large">
+              <Form.Group>
+                <Form.Field>
+                  <Field
+                    label="Name:"
+                    name="name"
+                    component={this.renderField}
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <div className="field">
+                    <label>Description:</label>
                     <Field
-                      label="Name:"
-                      name="name"
-                      component={this.renderField}
+                      label=""
+                      className
+                      name="description"
+                      component="textarea"
                     />
-                  </Form.Field>
-                  <Form.Field>
-                    <div className="field">
-                      <label>Description:</label>
-                      <Field
-                        label=""
-                        className
-                        name="description"
-                        component="textarea"
-                      />
-                    </div>
-                  </Form.Field>
-                </Form.Group>
-                <Divider />
-                <Grid centered>
-                  <Button type="submit" className="btn btn-primary">
-                    Submit
-                  </Button>
-                </Grid>
-              </Form>
-            </form>
-          </Card.Content>
-        </Card>
-      </Grid.Column>
+                  </div>
+                </Form.Field>
+              </Form.Group>
+              <Divider />
+              <Grid centered>
+                <Button type="submit" className="btn btn-primary">
+                  Submit
+                </Button>
+              </Grid>
+            </Form>
+          </form>
+        </Card.Content>
+      </Card>
     );
   }
 
@@ -96,10 +94,9 @@ class FormsIndex extends Component {
   onHandleToggle = () => {
     const toggle = !this.props.ui;
     this.props.toggleHidden(toggle);
-  }
+  };
 
   render() {
-    // const { handleSubmit } = this.props;
     const newFormUrl = "forms/new";
     const newFormString = "New Form";
 
@@ -109,36 +106,31 @@ class FormsIndex extends Component {
     return (
       <div>
         <HeaderMenu />
-        <Container fluid>
-          <Grid columns="equal">
-            <Grid.Column width={3}>
-              <Menu secondary>
-                <Menu.Menu position="right">
-                  <Menu.Item>
-                    <Button
-                      onClick={this.onHandleToggle}
-                      icon="plus"
-                      content="New Form"
-                      color="teal"
-                    />
-                  </Menu.Item>
-                </Menu.Menu>
-              </Menu>
-            </Grid.Column>
-            <Grid.Column>
-              <SecondaryMenu
-                firstUrl={newFormUrl}
-                firstString={newFormString}
-              />
-              <Grid.Column width={10}>
-                <Grid doubling columns={5}>
-                  {this.props.ui && this.renderNewFormCard()}
-                  {this.renderForms()}
-                </Grid>
-              </Grid.Column>
-            </Grid.Column>
-          </Grid>
-        </Container>
+        <Grid>
+          <Grid.Column width={2}>
+            <Menu secondary>
+              <Menu.Menu position="right">
+                <Menu.Item>
+                  <Button
+                    onClick={this.onHandleToggle}
+                    icon="plus"
+                    content="New Form"
+                    color="teal"
+                  />
+                </Menu.Item>
+              </Menu.Menu>
+            </Menu>
+          </Grid.Column>
+          <Grid.Column width={13}>
+            <SecondaryMenu />
+            <Container fluid>
+              <Card.Group>
+                {this.props.ui && this.renderNewFormCard()}
+                {this.renderForms()}
+              </Card.Group>
+            </Container>
+          </Grid.Column>
+        </Grid>
       </div>
     );
   }

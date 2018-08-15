@@ -24,7 +24,7 @@ class FormCard extends Component {
 
   render () {
     return (
-      <Grid.Column>
+
         <Card>
           <Card.Content as={Link} to={`forms/edit/${this.props.form.id}`}>
             <Card.Header>{this.props.form.name}</Card.Header>
@@ -62,8 +62,7 @@ class FormCard extends Component {
           </Menu>
           </Card.Content>
         </Card>
-      </Grid.Column>
-  )}
+    )}
 }
 
   export default FormCard

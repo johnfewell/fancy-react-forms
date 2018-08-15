@@ -17,6 +17,17 @@
   overflow-x: hidden;
 }
 
+.ui.form .fields {
+    flex-wrap: wrap !important;
+}
+
+.ui.form textarea:not([rows]) {
+    height: 6em !important;
+    width: 15.8em;
+    min-height: 6em !important;
+    max-height: 24em;
+  }
+
 .form-body {
   background-image: url('./components/background.jpeg');
   background-color: #cccccc;
