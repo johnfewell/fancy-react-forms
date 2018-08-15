@@ -7,7 +7,6 @@
     "axios": "^0.18.0",
     "lodash": "^4.17.10",
     "react": "^16.4.1",
-    "react-confirm-alert": "^2.0.5",
     "react-dom": "^16.4.1",
     "react-intersection-observer": "^6.1.0",
     "react-redux": "^5.0.7",
