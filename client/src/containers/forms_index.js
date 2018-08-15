@@ -23,10 +23,6 @@ class FormsIndex extends Component {
     this.setState({ votes: this.state.votes + 1 });
   };
 
-  constructor(props) {
-    super(props);
-    this.onHandleToggle = this.onHandleToggle.bind(this);
-  }
   componentDidMount() {
     this.props.fetchForms();
   }
@@ -97,9 +93,7 @@ class FormsIndex extends Component {
     this.props.createForm(values);
   }
 
-  //onHandleToggle = () => {}
-
-  onHandleToggle() {
+  onHandleToggle = () => {
     const toggle = !this.props.ui;
     this.props.toggleHidden(toggle);
   }
@@ -114,7 +108,7 @@ class FormsIndex extends Component {
     }
     return (
       <div>
-        <HeaderMenu firstUrl={newFormUrl} firstString={newFormString} />
+        <HeaderMenu />
         <Container fluid>
           <Grid columns="equal">
             <Grid.Column width={3}>
@@ -138,8 +132,8 @@ class FormsIndex extends Component {
               />
               <Grid.Column width={10}>
                 <Grid doubling columns={5}>
-                  {this.renderForms()}
                   {this.props.ui && this.renderNewFormCard()}
+                  {this.renderForms()}
                 </Grid>
               </Grid.Column>
             </Grid.Column>
