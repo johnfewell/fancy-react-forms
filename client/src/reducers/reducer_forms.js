@@ -17,6 +17,7 @@ export default function(state = initialState, action) {
     case 'FETCH_FORMS_ERROR':
       return { ...state, error: action.payload }
     case 'RECEIVED_FORMS':
+    console.log('action payload', action.payload)
       return {formsState: action.payload}
     case 'RECEIVED_RESPONSES':
       return {...state, responsesState: action.payload}

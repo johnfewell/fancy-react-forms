@@ -29,7 +29,7 @@ class FormsIndex extends Component {
 
   renderNewFormCard() {
     return (
-      <Card>
+      <Card data-tooltip="Click any card to see the form builder">
         <Card.Content>
           <Card.Header>New Form</Card.Header>
           <form onSubmit={this.props.handleSubmit(this.onSubmit.bind(this))}>
@@ -126,7 +126,7 @@ class FormsIndex extends Component {
             <Container fluid>
               <Card.Group>
                 {this.props.ui && this.renderNewFormCard()}
-                {this.renderForms()}
+                {this.renderForms ()}
               </Card.Group>
             </Container>
           </Grid.Column>

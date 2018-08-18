@@ -12,7 +12,7 @@ import {
   Grid,
   Divider,
   Button,
-  Confirm
+  Modal
 } from "semantic-ui-react";
 import { bindActionCreators } from "redux";
 import VerticalSidebar from "../components/vertical_sidebar";
@@ -20,9 +20,14 @@ import HeaderMenu from "../components/header_menu";
 import FormsRenderQuestions from "../components/forms_render_questions";
 
 class FormsEdit extends Component {
-  state = { open: false };
+  state = { open: false }
 
-  open = () => this.setState({ open: true });
+ closeConfigShow = (closeOnEscape, closeOnDimmerClick) => () => {
+   this.setState({ closeOnEscape, closeOnDimmerClick, open: true })
+ }
+
+  //
+  // open = () => this.setState({ open: true });
   close = () => this.setState({ open: false });
 
   renderField(field) {
@@ -59,23 +64,41 @@ class FormsEdit extends Component {
   }
 
   render() {
+    const { open, closeOnEscape, closeOnDimmerClick } = this.state
+
     const { handleSubmit } = this.props;
     return (
       <div>
         <HeaderMenu />
         <Segment basic>
           <div>
-            <Confirm
+            <Modal
               open={this.state.open}
-              content="Are you sure? This will delete your form and all of its questions."
-              onCancel={this.close}
-              onConfirm={this.onDeleteClick}
-            />
+              closeOnEscape={closeOnEscape}
+              closeOnDimmerClick={closeOnDimmerClick}
+              onClose={this.close}
+              closeIcon
+            >
+              <Header icon="warning sign" content="Permenantly delete?" />
+              <Modal.Content>
+                <p>
+                  Do you want to delete this form, all of its questions and responses?
+                </p>
+              </Modal.Content>
+              <Modal.Actions>
+                <Button onClick={this.close} color="red">
+                  <Icon name="remove" /> No
+                </Button>
+                <Button onClick={this.onDeleteClick} color="green">
+                  <Icon name="checkmark" /> Yes
+                </Button>
+              </Modal.Actions>
+            </Modal>
           </div>
           <Grid>
             <Grid.Row>
               <Grid.Column width={1}>
-                <VerticalSidebar submitDelete={this.open} />
+                <VerticalSidebar submitDelete={this.closeConfigShow(false, true)} />
               </Grid.Column>
               <Grid.Column width={6}>
                 <Header as="h3">Type a question and hit [enter]</Header>

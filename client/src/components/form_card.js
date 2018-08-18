@@ -25,7 +25,7 @@ class FormCard extends Component {
   render () {
     return (
 
-        <Card>
+        <Card data-tooltip="Click any card to see the form builder">
           <Card.Content as={Link} to={`forms/edit/${this.props.form.id}`}>
             <Card.Header>{this.props.form.name}</Card.Header>
             <Card.Meta> {'questions' in this.props.form ? this.props.form.questions.length : 0} Questions
