@@ -17,7 +17,7 @@
     "redux-form": "8.2.3",
     "redux-promise": "0.6.0",
     "redux-thunk": "2.3.0",
-    "semantic-ui-react": "0.87.1"
+    "semantic-ui-react": "0.87.2"
   },
   "scripts": {
     "start": "react-scripts start",
