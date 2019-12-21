@@ -13,7 +13,7 @@ group :production do
   gem 'pg'
 end
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 4.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 
